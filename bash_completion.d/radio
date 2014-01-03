@@ -1,0 +1,21 @@
+_radio ()
+{
+  local stations cur
+
+  # typed in word (or beginning of it)
+  cur="${COMP_WORDS[COMP_CWORD]}"
+
+  if [ -z "${cur}" ]; then
+      # nothing yet, full list of stations
+      stations="`cat ${HOME}/.radiorc | awk -- '{print $1}'`"
+  else
+      # only stations that have prefix ${cur}
+      stations="`cat ${HOME}/.radiorc | awk -- '{print $1}' | grep -iE ^${cur}`"
+  fi
+
+  COMPREPLY=( $(compgen -W "${stations}") )
+  return 0
+}
+complete -F _radio radio
+
+# vim: set ft=sh

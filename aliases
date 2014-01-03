@@ -1,0 +1,50 @@
+alias ls='ls --color=auto'
+alias l='ls -laF'
+alias ll='ls -lF'
+alias lt='ll -t'
+
+alias -- +='pushd'
+alias -- -='popd'
+alias -- ..='cd ..'
+
+alias sudo='sudo -p "[%p -> %U] Password: "'
+
+alias grep='grep --color=auto'
+
+alias cal='LC_TIME=et_EE.UTF-8 cal -3'
+
+alias crypt='openssl aes-256-cbc -salt'
+alias decrypt='openssl aes-256-cbc -d'
+
+alias webserver='python2 -m SimpleHTTPServer'
+
+alias mplayer=mpv
+
+timer ()
+{
+    max=${1:-60}
+    for ((i=0;  1;  ++i)); do
+        printf "\r[$i/$max]"
+        [ $i -gt $max ] && printf "\a"
+        sleep 1
+    done
+}
+
+session_timer ()
+{
+    count=${1:-2}
+    active=${2:-60}
+    rest=${3:-10}
+    for ((c=1;  c<=count;  c++)); do
+        for ((a=1;  a<=active;  a++)); do
+            printf '\rGo! [%d/%d]' $a $active
+            sleep 1
+        done
+        printf '\n'
+        for ((r=1;  r<=rest;  r++)); do
+            printf '\a\rRest... [%d/%d]' $r $rest
+            sleep 1
+        done
+        printf '\n===== %d =====\n\n' $c
+    done
+}

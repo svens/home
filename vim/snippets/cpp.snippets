@@ -1,0 +1,143 @@
+extends c
+
+
+#
+# i<
+#
+snippet hpp<
+#include <${1:iostream}>
+endsnippet
+
+
+#
+# i"
+#
+snippet hpp"
+#include "${1:`!v expand('%:t:r')`.hpp}"
+endsnippet
+
+
+#
+# ns
+#
+snippet ns
+namespace ${1:`!v expand('%:h:r')`} {
+
+
+${0}
+
+
+} // namespace $1
+endsnippet
+
+
+#
+# nss
+#
+snippet nss
+namespace ${1:`!v expand('%:h:r')`} { namespace ${2:`!v expand('%:t:r')`} {
+
+
+${0}
+
+
+}} // namespace $1::$2
+endsnippet
+
+
+#
+# fore
+#
+snippet fore
+for (${1:std::list}::iterator i(${2:data}.begin()), e($2.end());  i != e;  ++i) {
+    ${0}
+}
+endsnippet
+
+
+#
+# cl
+#
+snippet cl
+class ${1:`!v substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`_t}
+{
+public:
+
+    $1 (${2})
+    {}
+
+
+private:
+
+    ${0:// data}
+};
+endsnippet
+
+
+#
+# clc
+#
+snippet clc
+class ${1:`!v substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`_t}
+{
+public:
+
+    $1 () = default;
+
+
+    $1 ($1 const &that) = default;
+
+
+    $1 ($1 &&) noexcept = default;
+
+
+    ~$1 () = default;
+
+
+    $1 &operator= ($1 const &that)
+    {
+        $1 tmp(that);
+        *this = std::move(that);
+        return *this;
+    }
+
+
+    $1 &operator= ($1 &&) noexcept = default;
+
+
+    friend bool operator== ($1 const &l, $1 const &r)
+    {
+        return //TODO;
+    }
+
+
+    friend bool operator!= ($1 const &l, $1 const &r)
+    {
+        return !operator==(l, r);
+    }
+
+
+    friend bool operator< ($1 const &l, $1 const &r)
+    {
+        return //TODO
+    }
+
+
+private:
+
+    $2
+};
+endsnippet
+
+
+#
+# try/catch
+#
+snippet try
+try {
+    $3
+}
+catch (${1:std::exception} const &e) {
+    $2
+}
+endsnippet

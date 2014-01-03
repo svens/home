@@ -1,0 +1,37 @@
+#!/bin/sh
+
+set -e
+dev=${dev:-/dev/sde2}
+
+#
+# mount
+#
+if [ "$1" = "mount" ] && ! sudo cryptsetup status work >/dev/null 2>&1; then
+    sudo cryptsetup open $dev work
+    sudo mount /dev/mapper/work /work
+
+#
+# umount
+#
+elif [ "$1" = "umount" ] && sudo cryptsetup status work >/dev/null 2>&1; then
+    sudo umount /work
+    sudo cryptsetup close work
+
+#
+# connect
+#
+elif [ "$1" = "connect" ] && ! ip addr show tun0 2>/dev/null; then
+    sudo openconnect --config=/work/connect/vpn/skype-ext.conf lux.security.skype.net/skype-ext
+
+#
+# disconnect
+#
+elif [ "$1" = "disconnect" ] && ip addr show tun0 >/dev/null 2>&1; then
+    sudo pkill -f openconnect...config=/work/connect/vpn/skype-ext.conf.lux.security.skype.net/skype-ext
+
+#
+# error
+#
+else
+    exit 1
+fi

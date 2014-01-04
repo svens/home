@@ -2,17 +2,17 @@ extends c
 
 
 #
-# i<
+# ipp<
 #
-snippet hpp<
+snippet ipp<
 #include <${1:iostream}>
 endsnippet
 
 
 #
-# i"
+# ipp"
 #
-snippet hpp"
+snippet ipp"
 #include "${1:`!v expand('%:t:r')`.hpp}"
 endsnippet
 
@@ -75,9 +75,9 @@ endsnippet
 
 
 #
-# clc
+# cld
 #
-snippet clc
+snippet cld
 class ${1:`!v substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`_t}
 {
 public:
@@ -105,21 +105,53 @@ public:
     $1 &operator= ($1 &&) noexcept = default;
 
 
-    friend bool operator== ($1 const &l, $1 const &r)
+private:
+
+    $2
+};
+endsnippet
+
+
+#
+# cle
+#
+snippet cle
+class ${1:`!v substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`_t}
+{
+public:
+
+    $1 ()
     {
-        return //TODO;
     }
 
 
-    friend bool operator!= ($1 const &l, $1 const &r)
+    $1 ($1 const &that)
     {
-        return !operator==(l, r);
     }
 
 
-    friend bool operator< ($1 const &l, $1 const &r)
+    $1 ($1 &&) noexcept
     {
-        return //TODO
+    }
+
+
+    ~$1 ()
+    {
+    }
+
+
+    $1 &operator= ($1 const &that)
+    {
+        $1 tmp(that);
+        *this = std::move(that);
+        return *this;
+    }
+
+
+    $1 &operator= ($1 &&) noexcept
+    {
+        // TODO
+        return *this;
     }
 
 
@@ -127,6 +159,29 @@ private:
 
     $2
 };
+endsnippet
+
+
+#
+# f==
+#
+snippet f==
+friend bool operator== ($1 const &l, $1 const &r)
+{
+    return true; //TODO
+}
+
+
+friend bool operator!= ($1 const &l, $1 const &r)
+{
+    return !operator==(l, r);
+}
+
+
+friend bool operator< ($1 const &l, $1 const &r)
+{
+    return true; //TODO
+}
 endsnippet
 
 

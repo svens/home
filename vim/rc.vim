@@ -95,6 +95,10 @@ let c_no_curly_error = 1
 map Q gq
 nmap ,s :e %:p:s,.hpp$,.X123X,:s,.cpp$,.hpp,:s,.X123X$,.cpp,<CR>
 
+" temporarily use own clang-format.py until system-wide script installed
+map <C-o> :pyf ~/.vim/scripts/clang-format.py<CR>
+imap <C-o> <ESC>:pyf ~/.vim/scripts/clang-format.py<CR>i
+
 
 "
 " UltiSnips

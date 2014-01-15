@@ -10,6 +10,7 @@ fi
 ln $src/aliases .aliases
 ln $src/bash_profile .bash_profile
 ln $src/bashrc .bashrc
+ln $src/clang-format .clang-format
 ln $src/colordiffrc .colordiffrc
 ln $src/colorgccrc .colorgccrc
 ln $src/dir_colors .dir_colors

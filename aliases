@@ -18,8 +18,6 @@ alias decrypt='openssl aes-256-cbc -d'
 
 alias webserver='python2 -m SimpleHTTPServer'
 
-alias mplayer=mpv
-
 timer ()
 {
     max=${1:-60}

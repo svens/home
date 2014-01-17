@@ -96,8 +96,8 @@ map Q gq
 nmap ,s :e %:p:s,.hpp$,.X123X,:s,.cpp$,.hpp,:s,.X123X$,.cpp,<CR>
 
 " temporarily use own clang-format.py until system-wide script installed
-map <C-o> :pyf ~/.vim/scripts/clang-format.py<CR>
-imap <C-o> <ESC>:pyf ~/.vim/scripts/clang-format.py<CR>i
+map <C-U> :pyf ~/.vim/scripts/clang-format.py<CR>
+imap <C-U> <right><ESC>:pyf ~/.vim/scripts/clang-format.py<CR>i
 
 
 "

@@ -35,12 +35,12 @@ session_timer ()
     rest=${3:-10}
     for ((c=1;  c<=count;  c++)); do
         for ((a=1;  a<=active;  a++)); do
-            printf '\rGo! [%d/%d]' $a $active
+            printf '\a\rGo! [%d/%d]' $a $active
             sleep 1
         done
         printf '\n'
         for ((r=1;  r<=rest;  r++)); do
-            printf '\a\rRest... [%d/%d]' $r $rest
+            printf '\rRest... [%d/%d]' $r $rest
             sleep 1
         done
         printf '\n===== %d =====\n\n' $c

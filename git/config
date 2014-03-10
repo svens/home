@@ -13,8 +13,8 @@
     st = status
     br = branch
     co = checkout
-    tip = branch -v
-    graph = log --graph --format=one --branches --tags
+    graph = log --graph --format=one --all
+    tip = log --format=one -1
     clog = log --format=compact
     new = log ORIG_HEAD.. --stat --no-merges
     changed = diff --stat
@@ -33,7 +33,7 @@
     autosetupmerge = always
 
 [pack]
-    threads = 0
+    threads = 1
 
 [diff]
     renamelimit = 0
@@ -41,3 +41,6 @@
 [pretty]
     one = format:%C(yellow)%h%C(cyan)%d %Creset %s %C(red)%cn %C(magenta)%cr%Creset
     compact = format:%C(yellow)%h%Creset %s %C(magenta)%ar%Creset
+
+[svn]
+    pushmergeinfo = true

@@ -14,10 +14,10 @@
     br = branch
     co = checkout
     graph = log --graph --format=one --all
+    head = rev-parse --abbrev-ref HEAD
     tip = log --format=one -1
-    clog = log --format=compact
+    log-compact = log --format=compact
     new = log ORIG_HEAD.. --stat --no-merges
-    changed = diff --stat
     serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
 
     # flow

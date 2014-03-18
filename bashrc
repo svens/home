@@ -36,13 +36,11 @@ export EDITOR=vim
 export PAGER=less
 export LESS="-R -M -X -F --shift 5"
 export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}"erasedups"
-export HISTIGNORE="&:ls:ll:l:cd:rm:shutdown:mplayer"
+export HISTIGNORE="&:ls:ll:l:cd:rm:shutdown:mplayer:mpv"
 export HISTSIZE=1000
 
 export LC_COLLATE="POSIX"
 export LC_TIME="POSIX"
-
-export PK_STORE="/home/sven/src/passwords"
 
 export BROWSER=chromium
 export CHROMIUM_USER_FLAGS="--disk-cache-dir=/dev/shm --disk-cache-size=$((500*1024*1024)) --ppapi-flash-path=/usr/lib/PepperFlash/libpepflashplayer.so"

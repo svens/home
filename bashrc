@@ -15,7 +15,6 @@ add_path /usr/sbin
 add_path /usr/bin
 add_path /usr/local/sbin
 add_path /usr/local/bin
-add_path /usr/lib/colorgcc/bin
 add_path /work/bin
 add_path ${HOME}/bin
 
@@ -44,6 +43,8 @@ export LC_TIME="POSIX"
 
 export BROWSER=chromium
 export CHROMIUM_USER_FLAGS="--disk-cache-dir=/dev/shm --disk-cache-size=$((500*1024*1024)) --ppapi-flash-path=/usr/lib/PepperFlash/libpepflashplayer.so"
+
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # for debootstrap replace \h -> deb
 test -e /etc/debian_chroot && PS1="${PS1/\\h/$(cat /etc/debian_chroot)}"

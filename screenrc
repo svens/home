@@ -1,3 +1,4 @@
+# general settings
 escape ``
 vbell off
 autodetach on
@@ -5,6 +6,10 @@ startup_message off
 defscrollback 2048
 shell -/bin/bash
 
+# set status line
 termcapinfo xterm* 'hs:ts=\E]2;:fs=\007:ds=\E]2;\007:ti@:te@'
 hardstatus string "%h (screen)"
 caption always "%{gk}%-w%{kg}%50>%n %t%{gk}%+w%<"
+
+# keyboard bindings
+bind ' ' focus

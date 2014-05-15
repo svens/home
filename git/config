@@ -13,6 +13,7 @@
     st = status
     br = branch
     co = checkout
+    dw = diff --word-diff
     graph = log --graph --format=one --all
     head = rev-parse --abbrev-ref HEAD
     tip = log --format=one -1

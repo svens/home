@@ -11,7 +11,7 @@ BreakBeforeBinaryOperators: true
 BreakBeforeBraces: Linux
 BreakBeforeTernaryOperators: true
 BreakConstructorInitializersBeforeComma: true
-ColumnLimit: 80
+ColumnLimit: 0
 ConstructorInitializerAllOnOneLineOrOnePerLine: false
 ConstructorInitializerIndentWidth: 4
 ContinuationIndentWidth: 4
@@ -32,6 +32,7 @@ SpacesInParentheses: false
 Standard: Auto
 UseTab: Never
 
-# TODO(v3.5) AllowShortFunctionsOnASingleLine: false
+# TODO(v3.5) AllowShortFunctionsOnASingleLine: None
 # TODO(v3.5) Language: Cpp
+# TODO(v3.5) PointerAlignment: Right
 # TODO(v3.5) SpaceBeforeParens: Always

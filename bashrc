@@ -22,7 +22,6 @@ add_path ${HOME}/bin
 [[ $- != *i* ]] && return
 
 # completion stuff
-complete -cf sudo
 for file in ~/.bash_completion.d/*; do
     . $file
 done

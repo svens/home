@@ -3,6 +3,6 @@
 Bossa http://yp.shoutcast.com/sbin/tunein-station.pls?id=9466114 mpv -playlist
 Kuku http://striiming.trio.ee:8008/kuku.mp3 mpv
 Elmar http://striiming.trio.ee/elmar.mp3 mpv
-RetroFM http://streamer.akaver.com/streamgen.php?stream=retrofm&format=mp3&quality=hi mpv -playlist
+RetroFM http://stream05.akaver.com/retrofm_hi.mp3 mpv
 R2 http://r2.err.ee/gfx/raadio2128.m3u mpv -playlist
-StarFM http://stream.power.ee/StarFM.m3u mpv -playlist
+StarFM http://shout.babahh.com:8000/starfm mpv

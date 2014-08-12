@@ -85,6 +85,7 @@ filetype plugin indent on
 set cinoptions=l1,g0,t0,j1,(1s,W4,m1,N-s
 set formatoptions=tcroqln
 set noshowmatch
+set nowrap
 let loaded_matchparen = 1
 let c_no_curly_error = 1
 

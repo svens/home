@@ -1,6 +1,6 @@
 60s http://yp.shoutcast.com/sbin/tunein-station.pls?id=88214 mpv -playlist
 70s http://yp.shoutcast.com/sbin/tunein-station.pls?id=4325 mpv -playlist
-Bossa http://yp.shoutcast.com/sbin/tunein-station.pls?id=9466114 mpv -playlist
+Bossa http://yp.shoutcast.com/sbin/tunein-station.pls?id=63199 mpv -playlist
 Kuku http://striiming.trio.ee:8008/kuku.mp3 mpv
 Elmar http://striiming.trio.ee/elmar.mp3 mpv
 RetroFM http://stream05.akaver.com/retrofm_hi.mp3 mpv

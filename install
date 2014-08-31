@@ -13,7 +13,6 @@ ln $src/bashrc .bashrc
 ln $src/clang-format .clang-format
 ln $src/colordiffrc .colordiffrc
 ln $src/colorgccrc .colorgccrc
-ln $src/dir_colors .dir_colors
 ln $src/git/config .gitconfig
 ln $src/git/ignore .gitignore
 ln $src/inputrc .inputrc

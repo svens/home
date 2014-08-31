@@ -14,7 +14,6 @@
 
 
 self="`basename $0`"
-run_in_background=0
 show_url=0
 
 
@@ -40,13 +39,6 @@ get_player ()
 }
 
 
-# kill previous $PLAYER instances
-kill_prev ()
-{
-    killall -TERM mplayer &>/dev/null
-}
-
-
 # print application usage message
 usage ()
 {
@@ -55,10 +47,8 @@ Usage:
     $self [options] [station]
 
 options:
-    -h | --help         Print this nice helpful message
-    -b | --background   Run in background
-    -k | --kill         Kill all other $PLAYER instances
-    -s | --show         Just show station's corresponding URL
+    -h      Print this nice helpful message
+    -s      Just show station's corresponding URL
 
 station:
 EOS
@@ -68,24 +58,20 @@ EOS
 }
 
 
-# parse params
-params=`getopt -o bhks --long background,help,kill,show -n radio -- "$@"`
+# parse options
+args=$(getopt hs $*)
 if [ $? != 0 ]; then
-    echo "Try '$self --help' for more information"
+    echo "Try '$self -h' for more information"
     exit 1
 fi
-eval set -- "$params"
+set -- $args
 
-
-# handle params
-while true; do
-    case "$1" in
-        -b|--background) run_in_background=1 ; shift ;;
-        -h|--help) usage ; shift ;;
-        -k|--kill) kill_prev ; shift ;;
-        -s|--show) show_url=1 ; shift ;;
-        --) shift ; break ;;
-        *) echo "error..." ; exit 1 ;;
+for i; do
+    case "$i" in
+        -h) usage; shift;;
+        -s) show_url=1; shift;;
+        --) shift; break;;
+        *) echo "error..."; exit 1;;
     esac
 done
 
@@ -99,7 +85,7 @@ for station do
     url=`get_url $data`
     if [ -z "$url" ]; then
         echo "$self: invalid station"
-        echo "Try '$self --help' for more information"
+        echo "Try '$self -h' for more information"
         exit 1
     fi
 
@@ -113,12 +99,7 @@ for station do
     player=`get_player $data`
 
     # play
-    if [ $run_in_background == 1 ]; then
-        # if in background, play only first
-        nohup $player $url &>/dev/null &
-    else
-        $player $url
-    fi
+    $player $url
 
     exit 0
 done

@@ -1,17 +1,17 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 
 from sys import argv, exit
 from os import strerror
 from errno import *
 
 if len(argv) != 2:
-    print "Usage:\n  %s errno" % (argv[0],)
+    print("Usage:\n  %s errno" % (argv[0],))
     exit(1)
 
 try:
     s = argv[1].split(None, 1)[0].upper()
     value = eval(s)
-    print "%s(%d)\t%s" % (errorcode[value], value, strerror(value))
+    print("%s(%d)\t%s" % (errorcode[value], value, strerror(value)))
     exit(0)
 except:
     exit(1)

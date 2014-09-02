@@ -4,7 +4,7 @@
 
 [core]
     whitespace=fix,-index-with-non-tab,trailing-space,cr-at-eol
-    excludesfile = ${HOME}/.gitignore
+    excludesfile = ~/.gitignore
 
 [color]
     ui = auto

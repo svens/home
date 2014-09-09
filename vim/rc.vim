@@ -1,5 +1,6 @@
 " vim: set filetype=vim:
 
+call pathogen#infect()
 set nocompatible
 syntax enable
 
@@ -102,9 +103,9 @@ imap <C-U> <right><ESC>:pyf ~/.vim/scripts/clang-format.py<CR>i
 
 
 "
-" UltiSnips
+" SnipMate
 "
-let g:UltiSnipsSnippetDirectories = ["snippets"]
+let snippets_dir = "~/.vim/snippets"
 
 
 "

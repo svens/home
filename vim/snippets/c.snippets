@@ -2,165 +2,168 @@
 # main
 #
 snippet main
-int main (int argc, char const *argv[])
-{
-    ${0}
-    return 0;
-}
-endsnippet
+	int main (int argc, char const *argv[])
+	{
+		${1}
+		return 0;
+	}
+#
+
 
 #
 # include <>
 #
-snippet h<
-#include <${1:stdio.h}>
-endsnippet
+snippet <
+	#include <${1}>${2}
+#
+
 
 #
 # include ""
 #
-snippet h"
-#include "${1:`!v expand('%:t:r')`.h}"
-endsnippet
+snippet "
+	#include "${1}"${2}
+#
+
 
 #
-# if !defined() ... define ... endif
+# include guard
 #
 snippet g
-#if !defined(${1:`!v substitute(expand('%'), '\.\|\/', '_', 'g')`_included})
-#define $1
+	#if !defined(${1:`substitute(expand('%'), '\.\|\/', '_', 'g')`_included})
+	#define $1
 
 
-${0}
+	${2}
 
 
-#endif // $1
-endsnippet
+	#endif // $1
+#
 
 
 #
 # #if !defined(SYM) ... define SYM ... endif
 #
 snippet d
-#if !defined(${1/([A-Za-z0-9_]+).*/$1/})
-    #define ${1:SYMBOL} ${2:value}
-#endif
-${0}
-endsnippet
+	#if !defined($1)
+		#define ${1:SYMBOL} ${2:value}
+	#endif
+	${3}
+#
 
 
 #
 # function
 #
 snippet ()
-${1:void} ${2:foo} (${3})
-{
-    ${0}
-}
-endsnippet
+	${1:void} ${2:foo} (${3})
+	{
+		${4}
+	}
+#
 
 
 #
 # if
 #
 snippet if
-if (${1}) {
-    ${0}
-}
-endsnippet
+	if (${1}) {
+		${2}
+	}
+#
 
 
 #
 #  el
 #
 snippet el
-else {
-    ${0}
-}
-endsnippet
+	else {
+		${1}
+	}
+#
 
 
 # 
 #  do
 #
 snippet do
-do {
-    ${0}
-} while (${1});
-endsnippet
+	do {
+		${2}
+	} while (${1});
+#
 
 
 #
 #  wh
 #
 snippet wh
-while (${1}) {
-    ${0}
-}
-endsnippet
+	while (${1}) {
+		${2}
+	}
+#
 
 
 #
 #  for
 #
 snippet for
-for (${1:int} ${2:i} = 0;  $2 < ${3:count};  ++$2) {
-    ${0}
-}
-endsnippet
+	for (${1:int} ${2:i} = 0;  $2 != ${3:count};  ++$2) {
+		${4}
+	}
+#
 
 
 #
 #  fora
 #
 snippet fora
-for (${1:int} ${2:i} = 0;  $2 < sizeof(${3:data})/sizeof($3[0]);  ++$2) {
-    ${0}
-}
-endsnippet
+	for (${1:int} ${2:i} = 0;  $2 < sizeof(${3:data})/sizeof($3[0]);  ++$2) {
+		${4}
+	}
+#
 
 
 #
 #  sw
 #
 snippet sw
-switch (${1}) {
-    case ${2}:
-        ${0}
-        break;
-}
-endsnippet
+	switch (${1}) {
+		case ${2}:
+			${3}
+			break;
+	}
+#
 
 
 #
 #  st
 #
 snippet st
-struct ${1:`!v substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`_t}
-{
-    ${0}
-};
-endsnippet
+	struct ${1:`substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`_t}
+	{
+		${2}
+	};
+#
 
 
 #
 #  en
 #
 snippet en
-enum ${1:name}
-{
-    $2
-};
-endsnippet
+	enum ${1:name}
+	{
+		${2}
+	};
+#
 
 
 #
 #  /f
 #
 snippet /f
-/**
- * \file ${1:`!v expand('%')`}
- * \brief ${2}
- */
-${0}
-endsnippet
+	/**
+	 * \file `expand('%')`
+	 * \brief ${1}
+	 */
+	${2}
+#

@@ -15,7 +15,7 @@ alias cal='LC_TIME=et_EE.UTF-8 cal -3'
 alias crypt='openssl aes-256-cbc -salt'
 alias decrypt='openssl aes-256-cbc -d'
 
-alias webserver='python2 -m SimpleHTTPServer'
+alias webserver='python -m SimpleHTTPServer'
 
 timer ()
 {

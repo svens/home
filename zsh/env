@@ -1,0 +1,23 @@
+export EDITOR=vim
+export PAGER=less
+export LESS="-R -M -X -F --shift 5"
+export LC_COLLATE=POSIX
+export LC_TIME=POSIX
+export GCC_COLORS="error=01;31:warning=01;35:note=01;36:caret=01;32:locus=32:quote=01"
+
+setup_darwin ()
+{
+    export CLICOLOR=yes
+    export LSCOLORS="gxfxcxdxCxdxdxabagacad"
+}
+
+setup_linux ()
+{
+    alias ls="ls --color=auto"
+    export LS_COLORS="di=00;36:ln=01;35:so=01;35:pi=40;33:ex=01;32:bd=40;33:cd=40;33:su=37;41:sg=30;43:tw=30;42:ow=34;42"
+}
+
+case $(uname -s) in
+    Darwin) setup_darwin;;
+    Linux) setup_linux;;
+esac

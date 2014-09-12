@@ -1,0 +1,26 @@
+# path
+for dir in ~/bin /work/bin; do
+    [ -d "$dir" ] && path=($dir $path)
+done
+
+# fpath
+fpath=(/usr/local/share/zsh-completions $fpath)
+
+# prompt
+autoload -U colors && colors
+PROMPT="[%{$fg[green]%}%~%{$reset_color%}]"
+RPROMPT="%{$fg[cyan]%}%n@%m%{$reset_color%}"
+
+# history
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+export HISTFILE=~/.histfile
+export HISTSIZE=2000
+export SAVEHIST=$HISTSIZE
+
+# keys & completion
+bindkey -e
+autoload -U compinit && compinit
+
+# aliases
+[ -f ~/.aliases ] && source ~/.aliases

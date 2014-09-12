@@ -1,198 +1,152 @@
-extends c
-
-
-#
-# ipp<
-#
-snippet hpp<
-#include <${1:iostream}>
-endsnippet
-
-
-#
-# ipp"
-#
-snippet hpp"
-#include "${1:`!v expand('%:t:r')`.hpp}"
-endsnippet
-
-
 #
 # ns
 #
 snippet ns
-namespace ${1:`!v expand('%:h:r')`} {
+	namespace ${1:`expand('%:h:r')`} {
 
 
-${0}
+	${2}
 
 
-} // namespace $1
-endsnippet
+	} // namespace $1
+#
 
 
 #
 # nss
 #
 snippet nss
-namespace ${1:`!v expand('%:h:r')`} { namespace ${2:`!v expand('%:t:r')`} {
+	namespace ${1:`expand('%:h:r')`} { namespace ${2:`expand('%:t:r')`} {
 
 
-${0}
+	${3}
 
 
-}} // namespace $1::$2
-endsnippet
+	}} // namespace $1::$2
+#
 
 
 #
 # fore
 #
 snippet fore
-for (${1:std::list}::iterator i(${2:data}.begin()), e($2.end());  i != e;  ++i) {
-    ${0}
-}
-endsnippet
+	for (${1:std::list}::iterator i(${2:data}.begin()), e($2.end());  i != e;  ++i) {
+		${3}
+	}
+#
 
 
 #
 # cl
 #
 snippet cl
-class ${1:`!v substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`_t}
-{
-public:
+	class ${1:`substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`_t}
+	{
+	public:
 
-    $1 (${2})
-    {}
+		$1 (${2})
+		{}
 
 
-private:
+	private:
 
-    ${0:// data}
-};
-endsnippet
+		${3}
+	};
+#
 
 
 #
 # cld
 #
 snippet cld
-class ${1:`!v substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`_t}
-{
-public:
+	class ${1:`substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`_t}
+	{
+	public:
 
-    $1 () = default;
-
-
-    $1 ($1 const &that) = default;
+		$1 () = default;
 
 
-    $1 ($1 &&) noexcept = default;
+		$1 ($1 const &that) = default;
 
 
-    ~$1 () = default;
+		$1 ($1 &&) noexcept = default;
 
 
-    $1 &operator= ($1 const &that)
-    {
-        $1 tmp(that);
-        *this = std::move(that);
-        return *this;
-    }
+		~$1 () = default;
 
 
-    $1 &operator= ($1 &&) noexcept = default;
+		$1 &operator= ($1 const &that)
+		{
+			$1 tmp(that);
+			*this = std::move(that);
+			return *this;
+		}
 
 
-private:
+		$1 &operator= ($1 &&) noexcept = default;
 
-    $2
-};
-endsnippet
+
+	private:
+
+		${2}
+	};
+#
 
 
 #
 # cle
 #
 snippet cle
-class ${1:`!v substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`_t}
-{
-public:
+	class ${1:`substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`_t}
+	{
+	public:
 
-    $1 ()
-    {
-    }
-
-
-    $1 ($1 const &that)
-    {
-    }
+		$1 ()
+		{}
 
 
-    $1 ($1 &&) noexcept
-    {
-    }
+		$1 ($1 const &that)
+		{}
 
 
-    ~$1 ()
-    {
-    }
+		$1 ($1 &&) noexcept
+		{}
 
 
-    $1 &operator= ($1 const &that)
-    {
-        $1 tmp(that);
-        *this = std::move(that);
-        return *this;
-    }
+		~$1 ()
+		{}
 
 
-    $1 &operator= ($1 &&) noexcept
-    {
-        // TODO
-        return *this;
-    }
+		$1 &operator= ($1 const &that)
+		{
+			$1 tmp(that);
+			*this = std::move(that);
+			return *this;
+		}
 
 
-private:
+		$1 &operator= ($1 &&) noexcept
+		{
+			// TODO
+			return *this;
+		}
 
-    $2
-};
-endsnippet
 
+	private:
 
+		${2}
+	};
 #
-# f==
-#
-snippet f==
-friend bool operator== ($1 const &l, $1 const &r)
-{
-    return true; //TODO
-}
-
-
-friend bool operator!= ($1 const &l, $1 const &r)
-{
-    return !operator==(l, r);
-}
-
-
-friend bool operator< ($1 const &l, $1 const &r)
-{
-    return true; //TODO
-}
-endsnippet
 
 
 #
 # try/catch
 #
 snippet try
-try {
-    $3
-}
-catch (${1:std::exception} const &e) {
-    $2
-}
-endsnippet
+	try {
+		${3}
+	}
+	catch (${1:std::exception} const &e) {
+		${2}
+	}
+#

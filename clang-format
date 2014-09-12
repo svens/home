@@ -2,28 +2,30 @@ AccessModifierOffset: -4
 AlignEscapedNewlinesLeft: true
 AlignTrailingComments: true
 AllowAllParametersOfDeclarationOnNextLine: true
-AllowShortIfStatementsOnASingleLine: false
-AllowShortLoopsOnASingleLine: false
+AllowShortBlocksOnASingleLine: false
 AlwaysBreakBeforeMultilineStrings: true
 AlwaysBreakTemplateDeclarations: true
 BinPackParameters: false
 BreakBeforeBinaryOperators: true
-BreakBeforeBraces: Linux
+BreakBeforeBraces: Stroustrup
 BreakBeforeTernaryOperators: true
 BreakConstructorInitializersBeforeComma: true
-ColumnLimit: 0
+ColumnLimit: 80
 ConstructorInitializerAllOnOneLineOrOnePerLine: false
 ConstructorInitializerIndentWidth: 4
 ContinuationIndentWidth: 4
 Cpp11BracedListStyle: false
-DerivePointerBinding: true
+DerivePointerAlignment: true
 IndentCaseLabels: true
 IndentFunctionDeclarationAfterType: true
 IndentWidth: 4
+KeepEmptyLinesAtTheStartOfBlocks: true
+Language: Cpp
 MaxEmptyLinesToKeep: 2
 NamespaceIndentation: None
-SpaceAfterControlStatementKeyword: true
+PointerAlignment: Right
 SpaceBeforeAssignmentOperators: true
+SpaceBeforeParens: ControlStatements
 SpaceInEmptyParentheses: false
 SpacesBeforeTrailingComments: 1
 SpacesInAngles: false
@@ -31,8 +33,3 @@ SpacesInCStyleCastParentheses: false
 SpacesInParentheses: false
 Standard: Auto
 UseTab: Never
-
-# TODO(v3.5) AllowShortFunctionsOnASingleLine: None
-# TODO(v3.5) Language: Cpp
-# TODO(v3.5) PointerAlignment: Right
-# TODO(v3.5) SpaceBeforeParens: Always

@@ -8,7 +8,7 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 
 # prompt
 autoload -U colors && colors
-PROMPT="%{$fg[cyan]%}%n@%m%{$reset_color%}:%{$fg[green]%}%~%{$reset_color%} %(#.#.$) "
+PROMPT="%{$fg[green]%}%~%{$reset_color%} %(#.#.$) "
 
 # history
 setopt hist_ignore_all_dups

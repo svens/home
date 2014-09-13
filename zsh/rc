@@ -21,6 +21,7 @@ export SAVEHIST=$HISTSIZE
 # keys & completion
 bindkey -e
 autoload -U compinit && compinit
+setopt no_auto_menu
 
 # aliases
 [ -f ~/.aliases ] && source ~/.aliases

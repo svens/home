@@ -18,7 +18,7 @@ hi Statement    ctermfg=white cterm=bold    guifg=grey95
 hi Todo         ctermfg=black ctermbg=brown guifg=black guibg=darkyellow
 hi Type         ctermfg=white cterm=bold    guifg=grey95
 hi RightMargin  ctermfg=red                 guifg=red
-hi Visual       ctermfg=black ctermbg=darkgray
+hi Visual       ctermfg=black ctermbg=gray
 
 hi link Character       Constant
 hi link Number          Constant

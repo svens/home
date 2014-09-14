@@ -4,7 +4,11 @@ for dir in ~/bin /work/bin; do
 done
 
 # fpath
-fpath=(/usr/local/share/zsh-completions $fpath)
+fpath=(
+    /usr/local/share/zsh/site-functions
+    /usr/local/share/zsh-completions
+    $fpath
+)
 
 # prompt
 autoload -U colors && colors

@@ -4,11 +4,16 @@ for dir in ~/bin /work/bin; do
 done
 
 # fpath
-fpath=(/usr/local/share/zsh-completions $fpath)
+fpath=(
+    /usr/local/share/zsh/site-functions
+    /usr/local/share/zsh-completions
+    $fpath
+)
 
 # prompt
 autoload -U colors && colors
-PROMPT="%{$fg[green]%}%~%{$reset_color%} %(#.#.$) "
+[ -z "$SSH_CONNECTION" ] && pc=$reset_color || pc=$fg[cyan]
+PROMPT="%{$fg[green]%}%~%{$reset_color%} %{$pc%}%(#.#.$)%{$reset_color%} "
 
 # history
 setopt hist_ignore_all_dups

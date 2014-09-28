@@ -5,6 +5,7 @@ done
 
 # fpath
 fpath=(
+    ~/.completion.d
     /usr/local/share/zsh/site-functions
     /usr/local/share/zsh-completions
     $fpath

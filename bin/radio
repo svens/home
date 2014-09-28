@@ -1,11 +1,12 @@
-#!/bin/bash
+#!/bin/sh
 
+set -e
 
 #
 # Radio stations are read from file .radiorc
 #
 # Each station is on it's own line with format
-#   StationName StationURL [Player args]
+#   StationName StationURL [Player [args]]
 #
 # StationName: station's name (one word only)
 # StationURL: station's URL (must be eatable by $PLAYER)
@@ -13,93 +14,44 @@
 #
 
 
-self="`basename $0`"
-show_url=0
+radiorc=${HOME}/.radiorc
+player=mpv
 
 
-# print list of stations and corresponding URLs
 stations ()
 {
-    cat $HOME/.radiorc
+    [ -r "$radiorc" ] && cat "$radiorc"
 }
 
 
-# from $1, fetch url
-get_url ()
+station_names ()
 {
-    echo "`echo $* | awk -- '{print $2}'`"
+    stations | cut -f1 -d' '
 }
 
 
-# from $1, fetch url
-get_player ()
-{
-    player=`awk 'BEGIN {for (i=3;i<ARGC;++i) {printf "%s ",ARGV[i]}}' $*`
-    echo ${player:-mplayer}
-}
-
-
-# print application usage message
-usage ()
-{
-    cat <<- EOS
-Usage:
-    $self [options] [station]
-
-options:
-    -h      Print this nice helpful message
-    -s      Just show station's corresponding URL
-
-station:
-EOS
-    stations | awk -- '{print "   ",$1}' | sort
-
+if [ -z "$*" ]; then
+    station_names
     exit 0
-}
-
-
-# parse options
-args=$(getopt hs $*)
-if [ $? != 0 ]; then
-    echo "Try '$self -h' for more information"
-    exit 1
 fi
-set -- $args
-
-for i; do
-    case "$i" in
-        -h) usage; shift;;
-        -s) show_url=1; shift;;
-        --) shift; break;;
-        *) echo "error..."; exit 1;;
-    esac
-done
 
 
-# create list of urls
-for station do
-    # get station record
-    data=`stations | grep -iE "\<$station\>"`
+station_info ()
+{
+    local line="$(stations | grep -iE "^$1")"
+    station_name=$(echo "$line" | cut -sf1 -d' ')
+    station_url=$(echo "$line" | cut -sf2 -d' ')
+    station_player=$(echo "$line" | cut -sf3 -d' ')
+    station_cmd_args=$(echo "$line" | cut -sf4- -d' ')
+}
 
-    # get url for station
-    url=`get_url $data`
-    if [ -z "$url" ]; then
-        echo "$self: invalid station"
-        echo "Try '$self -h' for more information"
-        exit 1
-    fi
 
-    # just show if requested
-    if [ $show_url == 1 ]; then
-        echo "$url"
-        continue
-    fi
-
-    # get player
-    player=`get_player $data`
-
-    # play
-    $player $url
-
+station_info $1
+if [ -z "$station_name" ]; then
+    station_names
     exit 0
-done
+fi
+
+[ -z "$station_player" ] && station_player=$player
+
+$station_player $station_cmd_args $station_url

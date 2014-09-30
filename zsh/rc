@@ -25,6 +25,7 @@ export SAVEHIST=$HISTSIZE
 
 # keys & completion
 bindkey -e
+bindkey ^U backward-kill-line
 autoload -U compinit && compinit
 setopt no_auto_menu
 

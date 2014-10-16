@@ -3,6 +3,7 @@
 call pathogen#infect()
 set nocompatible
 syntax enable
+set synmaxcol=180
 
 
 "

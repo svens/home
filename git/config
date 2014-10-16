@@ -5,6 +5,7 @@
 [core]
     whitespace=fix,-index-with-non-tab,trailing-space,cr-at-eol
     excludesfile = ~/.gitignore
+    autocrlf = input
 
 [color]
     ui = auto

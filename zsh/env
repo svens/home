@@ -19,5 +19,5 @@ setup_linux ()
 
 case $(uname -s) in
     Darwin) setup_darwin;;
-    Linux) setup_linux;;
+    Linux|*) setup_linux;;
 esac

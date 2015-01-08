@@ -11,6 +11,9 @@ fpath=(
     $fpath
 )
 
+# environment
+[ -f ~/.env ] && source ~/.env
+
 # prompt
 autoload -U colors && colors
 [ -z "$SSH_CONNECTION" ] && pc=$reset_color || pc=$fg[cyan]

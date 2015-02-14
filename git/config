@@ -29,7 +29,7 @@
     support = flow support
 
 [push]
-    default = matching
+	default = upstream
 
 [branch]
     autosetupmerge = always

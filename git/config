@@ -10,6 +10,16 @@
 [color]
     ui = auto
 
+[pretty]
+    one = format:%C(yellow)%h%C(cyan)%d %Creset %s %C(red)%cn %C(magenta)%cr%Creset
+    compact = format:%C(yellow)%h%Creset %s %C(magenta)%ar%Creset
+
+[diff]
+    renamelimit = 0
+
+[pack]
+    threads = 1
+
 [alias]
     st = status
     br = branch
@@ -29,23 +39,13 @@
     support = flow support
 
 [push]
-	default = upstream
+    default = upstream
+
+[pull]
+    rebase = true
 
 [branch]
     autosetupmerge = always
-
-[pack]
-    threads = 1
-
-[diff]
-    renamelimit = 0
-
-[pretty]
-    one = format:%C(yellow)%h%C(cyan)%d %Creset %s %C(red)%cn %C(magenta)%cr%Creset
-    compact = format:%C(yellow)%h%Creset %s %C(magenta)%ar%Creset
-
-[svn]
-    pushmergeinfo = true
 
 [credential]
     helper = osxkeychain

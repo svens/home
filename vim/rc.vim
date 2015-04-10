@@ -4,6 +4,7 @@ call pathogen#infect()
 set nocompatible
 syntax enable
 set synmaxcol=180
+set modelines=5
 
 
 "
@@ -99,8 +100,8 @@ map Q gq
 nmap ,s :e %:p:s,.hpp$,.X123X,:s,.cpp$,.hpp,:s,.X123X$,.cpp,<CR>
 
 " temporarily use own clang-format.py until system-wide script installed
-map <C-U> :pyf ~/.vim/scripts/clang-format.py<CR>
-imap <C-U> <right><ESC>:pyf ~/.vim/scripts/clang-format.py<CR>i
+map <C-J> :pyf ~/.vim/scripts/clang-format.py<CR>
+imap <C-J> <right><ESC>:pyf ~/.vim/scripts/clang-format.py<CR>i
 
 
 "

@@ -30,7 +30,7 @@ snippet nss
 # fore
 #
 snippet fore
-	for (${1:std::list}::iterator i(${2:data}.begin()), e($2.end());  i != e;  ++i) {
+	for (auto &${1:i}: ${2}) {
 		${3}
 	}
 #
@@ -65,25 +65,13 @@ snippet cld
 
 		$1 () = default;
 
-
 		$1 ($1 const &that) = default;
-
-
-		$1 ($1 &&) noexcept = default;
-
+		$1 ($1 &&that) noexcept = default;
 
 		~$1 () = default;
 
-
-		$1 &operator= ($1 const &that)
-		{
-			$1 tmp(that);
-			*this = std::move(that);
-			return *this;
-		}
-
-
-		$1 &operator= ($1 &&) noexcept = default;
+		$1 &operator= ($1 const &that) = default;
+		$1 &operator= ($1 &&that) noexcept = default;
 
 
 	private:
@@ -109,7 +97,7 @@ snippet cle
 		{}
 
 
-		$1 ($1 &&) noexcept
+		$1 ($1 &&that) noexcept
 		{}
 
 
@@ -119,15 +107,12 @@ snippet cle
 
 		$1 &operator= ($1 const &that)
 		{
-			$1 tmp(that);
-			*this = std::move(that);
 			return *this;
 		}
 
 
-		$1 &operator= ($1 &&) noexcept
+		$1 &operator= ($1 &&that) noexcept
 		{
-			// TODO
 			return *this;
 		}
 

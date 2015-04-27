@@ -28,7 +28,7 @@ prepend_path ${HOME}/proov
 
 # bash-specific env
 PS1='\[\033[32m\]\w\[\033[00m\] '
-[ -z "$SSH_CONNECTION" ] && PS1="$PS1\$ " || PS1="$PS1\033[36m\$\033[0m "
+[ -z "$SSH_CONNECTION" ] && PS1="$PS1\$ " || PS1="$PS1\[\033[36m\]\$\[\033[0m\] "
 export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}"erasedups"
 export HISTIGNORE="&:ls:ll:l:cd:rm:shutdown:mplayer:mpv"
 export HISTSIZE=1000

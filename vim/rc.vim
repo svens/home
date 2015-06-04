@@ -28,9 +28,7 @@ set termencoding=utf-8
 "
 set expandtab
 set smarttab
-set softtabstop=4
 set shiftwidth=4
-set tabstop=4
 
 
 "

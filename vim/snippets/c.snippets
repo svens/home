@@ -34,9 +34,19 @@ snippet g
 	#define $1
 
 
-	${2}
+	/**
+	 * \file `expand('%')`
+	 * ${2}
+	 *
+	 * \addtogroup ${3}
+	 * \{
+	 */
 
 
+	${4}
+
+
+	/// \}
 	#endif // $1
 #
 
@@ -154,16 +164,4 @@ snippet enum
 	{
 		${2}
 	};
-#
-
-
-#
-#  /f
-#
-snippet /f
-	/**
-	 * \file `expand('%')`
-	 * \brief ${1}
-	 */
-	${2}
 #

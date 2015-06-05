@@ -17,9 +17,6 @@
 [diff]
     renamelimit = 0
 
-[pack]
-    threads = 1
-
 [alias]
     st = status
     br = branch
@@ -31,12 +28,6 @@
     log-compact = log --format=compact
     new = log ORIG_HEAD.. --stat --no-merges
     serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
-
-    # flow
-    feature = flow feature
-    release = flow release
-    hotfix = flow hotfix
-    support = flow support
 
 [push]
     default = upstream

@@ -8,14 +8,6 @@ set modelines=5
 
 
 "
-" simple xterm doesn't colorize always
-"
-"if &term == "xterm"
-"    set term=xterm-color
-"endif
-
-
-"
 " encoding
 "
 set encoding=utf-8
@@ -96,10 +88,6 @@ let c_no_curly_error = 1
 "
 map Q gq
 nmap ,s :e %:p:s,.hpp$,.X123X,:s,.cpp$,.hpp,:s,.X123X$,.cpp,<CR>
-
-" temporarily use own clang-format.py until system-wide script installed
-map <C-J> :pyf ~/.vim/scripts/clang-format.py<CR>
-imap <C-J> <right><ESC>:pyf ~/.vim/scripts/clang-format.py<CR>i
 
 
 "

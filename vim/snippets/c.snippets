@@ -30,24 +30,21 @@ snippet "
 # include guard
 #
 snippet g
-	#if !defined(${1:`substitute(expand('%'), '\.\|\/', '_', 'g')`_included})
-	#define $1
-
+	#pragma once
 
 	/**
 	 * \file `expand('%')`
-	 * ${2}
+	 * ${1}
 	 *
-	 * \addtogroup ${3}
+	 * \addtogroup ${2}
 	 * \{
 	 */
 
 
-	${4}
+	${3}
 
 
 	/// \}
-	#endif // $1
 #
 
 

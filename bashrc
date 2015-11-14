@@ -17,7 +17,6 @@ prepend_path /usr/local/sbin
 prepend_path /usr/local/bin
 prepend_path /work/bin
 prepend_path ${HOME}/bin
-prepend_path ${HOME}/proov
 
 # done if non-interactive shell
 [[ $- != *i* ]] && return

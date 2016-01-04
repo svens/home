@@ -1,0 +1,22 @@
+#compdef mpv
+
+local curcontext="$curcontext" state
+typeset -A opt_args
+
+local rc=1
+
+_arguments -C -S \
+    '-sub-file: :->subs' \
+    '*: :->media' && rc=0
+
+case $state in
+    subs)
+        _files -g "*.(#i)(srt|ass)(-.)" && rc=0
+        ;;
+
+    media)
+        _files -g "*.(#i)(avi|flac|flv|m1v|m2p|m2v|m4v|mkv|mov|mp3|mp4|mpe|mpeg|mpg|ogg|ogm|ogv|qt|rm|ts|vob|wav|webm|wma|wmv)(-.)" && rc=0
+        ;;
+esac
+
+return rc

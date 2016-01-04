@@ -1,0 +1,3 @@
+#compdef radio
+
+_arguments "1: :($(radio))"

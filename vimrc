@@ -4,4 +4,4 @@ if filereadable($HOME . "/.vim/rc.vim")
 endif
 
 " overwrite work settings
-au! BufRead,BufNewFile /work/transport_relay/** setlocal expandtab shiftwidth=2 softtabstop=2
+au! BufRead,BufNewFile /work/** setlocal expandtab shiftwidth=2 softtabstop=2

@@ -16,6 +16,7 @@
 
 [diff]
     renamelimit = 0
+    submodule = log
 
 [alias]
     st = status

@@ -30,7 +30,8 @@ snippet nss
 # fore
 #
 snippet fore
-	for (auto &${1:i}: ${2}) {
+	for (auto &${1:i}: ${2})
+	{
 		${3}
 	}
 #
@@ -40,12 +41,13 @@ snippet fore
 # cl
 #
 snippet cl
-	class ${1:`substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`_t}
+	class ${1:`substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`}
 	{
 	public:
 
 		$1 (${2})
-		{}
+		{
+		}
 
 
 	private:
@@ -59,18 +61,18 @@ snippet cl
 # cld
 #
 snippet cld
-	class ${1:`substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`_t}
+	class ${1:`substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`}
 	{
 	public:
 
 		$1 () = default;
 
-		$1 ($1 const &that) = default;
+		$1 (const $1 &that) = default;
 		$1 ($1 &&that) noexcept = default;
 
 		~$1 () = default;
 
-		$1 &operator= ($1 const &that) = default;
+		$1 &operator= (const $1 &that) = default;
 		$1 &operator= ($1 &&that) noexcept = default;
 
 
@@ -85,27 +87,31 @@ snippet cld
 # cle
 #
 snippet cle
-	class ${1:`substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`_t}
+	class ${1:`substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`}
 	{
 	public:
 
 		$1 ()
-		{}
+		{
+		}
 
 
-		$1 ($1 const &that)
-		{}
+		$1 (const $1 &that)
+		{
+		}
 
 
 		$1 ($1 &&that) noexcept
-		{}
+		{
+		}
 
 
 		~$1 ()
-		{}
+		{
+		}
 
 
-		$1 &operator= ($1 const &that)
+		$1 &operator= (const $1 &that)
 		{
 			return *this;
 		}
@@ -128,10 +134,12 @@ snippet cle
 # try/catch
 #
 snippet try
-	try {
+	try
+	{
 		${3}
 	}
-	catch (${1:std::exception} const &e) {
+	catch (const ${1:std::exception} &e)
+	{
 		${2}
 	}
 #
@@ -141,7 +149,7 @@ snippet try
 # static_cast
 #
 snippet sc
-	static_cast<${1}>(${2})
+	static_cast<${1}>(${2})${3}
 #
 
 
@@ -149,5 +157,13 @@ snippet sc
 # reinterpret_cast
 #
 snippet rc
-	reinterpret_cast<${1}>(${2})
+	reinterpret_cast<${1}>(${2})${3}
+#
+
+
+#
+# const_cast
+#
+snippet cc
+	const_cast<${1}>(${2})${3}
 #

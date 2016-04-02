@@ -20,7 +20,7 @@ set termencoding=utf-8
 "
 set expandtab
 set smarttab
-set shiftwidth=4
+set shiftwidth=2
 
 
 "

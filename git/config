@@ -30,17 +30,5 @@
     new = log ORIG_HEAD.. --stat --no-merges
     serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
 
-[push]
-    default = upstream
-
-[pull]
-    rebase = true
-
-[branch]
-    autosetupmerge = always
-
 [credential]
     helper = osxkeychain
-
-[merge]
-    ff = false

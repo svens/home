@@ -20,6 +20,9 @@ hi Type         ctermfg=white cterm=bold    guifg=grey95
 hi RightMargin  ctermfg=red                 guifg=red
 hi Visual       ctermfg=black ctermbg=gray
 
+hi Pmenu ctermbg=brown
+hi PmenuSel ctermbg=yellow
+
 hi link Character       Constant
 hi link Number          Constant
 hi link Boolean         Constant

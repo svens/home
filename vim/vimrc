@@ -1,5 +1,9 @@
 " vim: set filetype=vim:
 
+" allow secure per directory .vimrc
+set secure
+set exrc
+
 call pathogen#infect()
 set nocompatible
 syntax enable
@@ -52,12 +56,13 @@ set history=50
 set foldmethod=marker
 set textwidth=78
 
+
 "
 " Undo settings (will not outlive reboot)
 "
 if v:version >= 703
-    set undofile
-    set undodir=/tmp
+  set undofile
+  set undodir=/tmp
 endif
 
 
@@ -87,7 +92,9 @@ let c_no_curly_error = 1
 " mappings
 "
 map Q gq
-nmap ,s :e %:p:s,.hpp$,.X123X,:s,.cpp$,.hpp,:s,.X123X$,.cpp,<CR>
+
+let mapleader = ";"
+nmap <leader>s :e %:p:s,.hpp$,.X123X,:s,.cpp$,.hpp,:s,.X123X$,.cpp,<CR>
 
 
 "
@@ -95,6 +102,53 @@ nmap ,s :e %:p:s,.hpp$,.X123X,:s,.cpp$,.hpp,:s,.X123X$,.cpp,<CR>
 "
 let snippets_dir = "~/.vim/snippets"
 
+
+"
+" clang_complete, cscope & quickfix
+"
+set completeopt-=preview
+let g:clang_complete_auto = 0
+let g:clang_complete_copen = 0
+let g:clang_hl_errors = 1
+let g:clang_complete_macros = 1
+let g:clang_complete_patterns = 1
+let g:clang_conceal_snippets = 1
+let g:clang_library_path = '/Library/Developer/CommandLineTools/usr/lib'
+let g:clang_snippets = 1
+let g:clang_trailing_placeholder = 1
+let g:clang_user_options = '-std=c++14'
+
+" stop clang_complete to overwrite our beloved ctags keys
+let g:clang_jumpto_declaration_key = 'undefined'
+let g:clang_jumpto_declaration_in_preview_key = 'undefined'
+let g:clang_jumpto_back_key = 'undefined'
+
+nmap <leader>c :call g:ClangUpdateQuickFix()<CR>
+nmap <leader>g :call g:ClangGotoDeclaration()<CR>
+nmap <leader>m :make<CR>:cw<CR>
+nmap <leader>e :clist<CR>
+
+if has("cscope")
+  set cscopetag cscopetagorder=1
+
+  nmap <leader>fs :cscope find s <C-R>=expand("<cword>")<CR><CR>
+  nmap <leader>fg :cscope find g <C-R>=expand("<cword>")<CR><CR>
+  nmap <leader>fc :cscope find c <C-R>=expand("<cword>")<CR><CR>
+  nmap <leader>ft :cscope find t <C-R>=expand("<cword>")<CR><CR>
+  nmap <leader>fe :cscope find e <C-R>=expand("<cword>")<CR><CR>
+  nmap <leader>ff :cscope find f <C-R>=expand("<cfile>")<CR><CR>
+  nmap <leader>fi :cscope find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+  nmap <leader>fd :cscope find d <C-R>=expand("<cword>")<CR><CR>
+
+  nmap <leader>2s :scscope find s <C-R>=expand("<cword>")<CR><CR>
+  nmap <leader>2g :scscope find g <C-R>=expand("<cword>")<CR><CR>
+  nmap <leader>2c :scscope find c <C-R>=expand("<cword>")<CR><CR>
+  nmap <leader>2t :scscope find t <C-R>=expand("<cword>")<CR><CR>
+  nmap <leader>2e :scscope find e <C-R>=expand("<cword>")<CR><CR>
+  nmap <leader>2f :scscope find f <C-R>=expand("<cfile>")<CR><CR>
+  nmap <leader>2i :scscope find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+  nmap <leader>2d :scscope find d <C-R>=expand("<cword>")<CR><CR>
+endif
 
 "
 " load colors
@@ -111,11 +165,7 @@ match RightMargin /\%<80v.\%>79v/
 "
 " Show tabs and trailing whitespaces visually
 "
-if v:version >= 700
-    set list listchars=tab:..,trail:.,extends:>,nbsp:_
-else
-    set list listchars=tab:..,trail:.,extends:>
-endif
+set list listchars=tab:..,trail:.,extends:>,nbsp:_
 
 
 "

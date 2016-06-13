@@ -1,0 +1,114 @@
+priority -50
+
+
+snippet main "main"
+int main (int argc, const char *argv[])
+{
+	$0
+	return EXIT_SUCCESS;
+}
+endsnippet
+
+
+snippet g "header guard"
+#pragma once
+
+
+$0
+endsnippet
+
+
+snippet < "include <>"
+#include <${1:stdio.h}>
+$0
+endsnippet
+
+
+snippet d "define if not defined"
+#if !defined($1)
+	#define ${1:SYMBOL} ${2:value}
+#endif
+$0
+endsnippet
+
+
+snippet () "function"
+${1:void} ${2:foo} ($3)
+{
+	$0
+}
+endsnippet
+
+
+snippet if "if ()"
+if ($1)
+{
+	$0
+}
+endsnippet
+
+
+snippet else "else"
+else
+{
+	$0
+}
+endsnippet
+
+
+snippet do "do while"
+do
+{
+	$0
+} while ($1);
+endsnippet
+
+
+snippet while "while"
+while ($1)
+{
+	$0
+}
+endsnippet
+
+
+snippet fi "for (int)"
+for (${1:int} ${2:i} = 0;  $2 != ${3:count};  ++$2)
+{
+	$0
+}
+endsnippet
+
+
+snippet fa "for (array)"
+for (${1:int} ${2:i} = 0;  $2 < sizeof(${3:data})/sizeof($3[0]);  ++$2)
+{
+	$0
+}
+endsnippet
+
+
+snippet switch "switch"
+switch ($1)
+{
+	case $2:
+		$0
+		break;
+}
+endsnippet
+
+
+snippet struct "struct"
+struct ${1:`!v substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`}
+{
+	$2
+};
+endsnippet
+
+
+snippet enum "enum"
+enum ${1:name}
+{
+	$0
+};
+endsnippet

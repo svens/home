@@ -36,11 +36,74 @@ namespace ${1:`!v expand('%:h:r')`} { namespace ${2:`!v expand('%:t:r')`} {
 $0
 
 
-} // namespace $1::$2
+}} // namespace $1::$2
 endsnippet
 
 
 snippet cl "simple class"
+class ${1:`!v substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`}
+{
+public:
+
+	$1 ()
+	{
+	}
+
+
+	$1 (const $1 &that)
+	{
+	}
+
+
+	$1 ($1 &&that)
+	{
+	}
+
+
+	~$1 ()
+	{
+	}
+
+
+	$1 &operator= (const $1 &that)
+	{
+		return *this;
+	}
+
+
+	$1 &operator= ($1 &&that)
+	{
+		return *this;
+	}
+
+
+private:
+
+	$0
+};
+endsnippet
+
+
+snippet cld "class with default ctors/dtor"
+class ${1:`!v substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`}
+{
+public:
+
+	$1 () = default;
+
+	$1 (const $1 &that) = default;
+	$1 ($1 &&that) = default;
+
+	~$1 () = default;
+
+	$1 &operator= (const $1 &that) = default;
+	$1 &operator= ($1 &&that) = default;
+
+
+private:
+
+	$0
+};
 endsnippet
 
 

@@ -13,14 +13,17 @@ endsnippet
 snippet g "header guard"
 #pragma once
 
+/**
+ * \file `!v expand('%')`
+ */
+
 
 $0
 endsnippet
 
 
 snippet < "include <>"
-#include <${1:stdio.h}>
-$0
+#include <${1:stdio.h}>$0
 endsnippet
 
 

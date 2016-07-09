@@ -4,8 +4,7 @@ priority -49
 
 
 snippet < "include <>"
-#include <${1:iostream}>
-$0
+#include <${1:iostream}>$0
 endsnippet
 
 
@@ -30,7 +29,7 @@ endsnippet
 
 
 snippet nss "namespace { namespace {"
-namespace ${1:`!v expand('%:h:r')`} { namespace ${2:`!v expand('%:t:r')`} {
+namespace ${1:`!v expand('%:h:h')`} { namespace ${2:`!v expand('%:h:t')`} {
 
 
 $0
@@ -41,6 +40,19 @@ endsnippet
 
 
 snippet cl "simple class"
+class ${1:`!v substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`}
+{
+public:
+
+	$0
+
+private:
+
+};
+endsnippet
+
+
+snippet class "simple class"
 class ${1:`!v substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`}
 {
 public:

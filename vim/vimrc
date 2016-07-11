@@ -127,6 +127,10 @@ let g:clang_snippets = 1
 let g:clang_trailing_placeholder = 1
 let g:clang_user_options = '-std=c++14 -Wall -Wextra -Weffc++ -Wno-pragma-once-outside-header -Wno-unused-parameter -Werror -pedantic'
 
+if !filereadable(expand("%:p:h") . "/Makefile")
+  set makeprg=clang++\ -std=c++14\ -Wall\ -Wextra\ -Werror\ -pedantic\ -o\ %<\ %
+endif
+
 " stop clang_complete to overwrite our beloved ctags keys
 let g:clang_jumpto_declaration_key = 'undefined'
 let g:clang_jumpto_declaration_in_preview_key = 'undefined'

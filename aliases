@@ -7,6 +7,8 @@ alias -- -='popd'
 alias -- ..='cd ..'
 alias lvi='vi --noplugin -c "syntax off"'
 
+alias myip='dig +short @resolver1.opendns.com myip.opendns.com'
+
 alias sudo='sudo -p "[%p -> %U] Password: "'
 
 alias grep='grep --color=auto'

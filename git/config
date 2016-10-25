@@ -19,6 +19,10 @@
     submodule = log
 
 [alias]
+    it = !git init && git commit -m "root" --allow-empty
+    amend = commit --amend --no-edit
+    home = !open $(git remote get-url origin)
+    s = status -sb
     st = status
     br = branch
     co = checkout

@@ -5,6 +5,7 @@ alias lt='ll -t'
 alias -- +='pushd'
 alias -- -='popd'
 alias -- ..='cd ..'
+alias -- ...='cd ../..'
 alias lvi='vi --noplugin -c "syntax off"'
 
 alias myip='dig +short @resolver1.opendns.com myip.opendns.com'

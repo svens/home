@@ -11,6 +11,9 @@ Plugin 'PProvost/vim-ps1'
 call vundle#end()
 filetype plugin indent on
 
+" filetype specific stuff
+autocmd filetype crontab setlocal nobackup nowritebackup
+
 " allow secure per directory .vimrc
 set secure
 set exrc

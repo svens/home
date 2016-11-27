@@ -22,7 +22,8 @@
     it = !git init && git commit -m "root" --allow-empty
     amend = commit --amend --no-edit
     home = !open $(git remote get-url origin)
-    s = status -sb
+    a = branch --all
+    s = status --short --branch
     st = status
     br = branch
     co = checkout

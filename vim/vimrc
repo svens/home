@@ -104,6 +104,10 @@ let c_no_curly_error = 1
 "
 map Q gq
 
+" searching
+vnoremap // y/\V<C-R>"<CR>
+
+" header/source switch
 let mapleader = ";"
 nmap <leader>s :e %:p:s,.hpp$,.X123X,:s,.cpp$,.hpp,:s,.X123X$,.cpp,<CR>
 

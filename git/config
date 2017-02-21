@@ -1,43 +1,54 @@
 [user]
-    name = Sven Suursoho
-    email = spam@alt.ee
+	name = Sven Suursoho
+	email = spam@alt.ee
 
 [core]
-    whitespace=fix,-index-with-non-tab,trailing-space,cr-at-eol
-    excludesfile = ~/.gitignore
-    autocrlf = input
+	whitespace=fix,-index-with-non-tab,trailing-space,cr-at-eol
+	excludesfile = ~/.gitignore
+	autocrlf = input
 
 [color]
-    ui = auto
+	ui = auto
 
 [pretty]
-    one = format:%C(yellow)%h%C(cyan)%d %Creset %s %C(red)%cn %C(magenta)%cr%Creset
-    compact = format:%C(yellow)%h%Creset %s %C(magenta)%ar%Creset
+	one = format:%C(yellow)%h%C(cyan)%d %Creset %s %C(red)%cn %C(magenta)%cr%Creset
+	compact = format:%C(yellow)%h%Creset %s %C(magenta)%ar%Creset
 
 [diff]
-    renamelimit = 0
-    submodule = log
+	renamelimit = 0
+	submodule = log
 
 [alias]
-    it = !git init && git commit -m "root" --allow-empty
-    amend = commit --amend --no-edit
-    url = remote get-url origin
-    home = !open $(git url)
-    a = branch --all
-    s = status --short --branch
-    st = status
-    br = branch
-    co = checkout
-    dw = diff --word-diff
-    graph = log --graph --format=one --all
-    head = rev-parse --abbrev-ref HEAD
-    tip = log --format=one -1
-    log-compact = log --format=compact
-    new = log ORIG_HEAD.. --stat --no-merges
-    serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
-    pack = !git archive HEAD -o "$(basename $(git rev-parse --show-toplevel)).zip" --prefix "$(basename $(git rev-parse --show-toplevel))/"
-    tgz = !git pack --format=tar.gz
-    zip = !git pack --format=zip
+	it = !git init && git commit -m "root" --allow-empty
+	amend = commit --amend --no-edit
+	url = remote get-url origin
+	home = !open $(git url)
+	a = branch --all
+	s = status --short --branch
+	st = status
+	br = branch
+	co = checkout
+	dw = diff --word-diff
+	graph = log --graph --format=one --all
+	head = rev-parse --abbrev-ref HEAD
+	tip = log --format=one -1
+	log-compact = log --format=compact
+	new = log ORIG_HEAD.. --stat --no-merges
+	serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
+	root = rev-parse --show-toplevel
+        repo = !basename $(git root)
+	pack = !git archive HEAD --prefix "$(git repo)/"
+	tgz = !git pack --format=tar.gz -o "$(git repo).tar.gz"
+	zip = !git pack --format=zip -o "$(git repo).zip"
 
 [credential]
-    helper = osxkeychain
+	helper = osxkeychain
+
+[push]
+	default = upstream
+
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f

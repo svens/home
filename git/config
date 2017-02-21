@@ -35,6 +35,9 @@
     log-compact = log --format=compact
     new = log ORIG_HEAD.. --stat --no-merges
     serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
+    pack = !git archive HEAD -o "$(basename $(git rev-parse --show-toplevel)).zip" --prefix "$(basename $(git rev-parse --show-toplevel))/"
+    tgz = !git pack --format=tar.gz
+    zip = !git pack --format=zip
 
 [credential]
     helper = osxkeychain

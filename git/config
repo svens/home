@@ -1,6 +1,6 @@
 [user]
 	name = Sven Suursoho
-	email = spam@alt.ee
+	email = sven@alt.ee
 
 [core]
 	whitespace=fix,-index-with-non-tab,trailing-space,cr-at-eol

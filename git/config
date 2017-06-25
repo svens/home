@@ -36,7 +36,7 @@
 	new = log ORIG_HEAD.. --stat --no-merges
 	serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
 	root = rev-parse --show-toplevel
-        repo = !basename $(git root)
+	repo = !basename $(git root)
 	pack = !git archive HEAD --prefix "$(git repo)/"
 	tgz = !git pack --format=tar.gz -o "$(git repo).tar.gz"
 	zip = !git pack --format=zip -o "$(git repo).zip"

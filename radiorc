@@ -1,10 +1,9 @@
-60s http://listen.streamonomy.com/keepfree60s mpv
-70s http://108.61.73.118:8066 mpv
-Bossa http://185.33.21.113:11049 mpv
-Folk http://listen.radionomy.com/AOLMRadio mpv
-Oldies http://50.7.129.122:8433/stream mpv
-Kuku http://striiming.trio.ee:8008/kuku.mp3 mpv
-Elmar http://striiming.trio.ee/elmar.mp3 mpv
-RetroFM http://stream05.akaver.com/retrofm_hi.mp3 mpv
+60s http://listen.streamonomy.com/keepfree60s
+70s http://listen.radionomy.com/Bestofthe70s-LudwigRadiocom
+Bossa http://185.33.21.113:11049
+Oldies http://50.7.129.122:8433/stream
+Kuku http://striiming.trio.ee:8008/kuku.mp3
+Elmar http://striiming.trio.ee/elmar.mp3
+RetroFM http://retro.babahhcdn.com/RETRO
 R2 http://r2.err.ee/gfx/raadio2128.m3u mpv -playlist
-StarFM http://shout.babahh.com:8000/starfm mpv
+StarFM http://shout.babahh.com:8000/starfm

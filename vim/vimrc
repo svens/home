@@ -102,14 +102,18 @@ let c_no_curly_error = 1
 "
 " mappings
 "
+
 map Q gq
 
 " searching
 vnoremap // y/\V<C-R>"<CR>
 
-" header/source switch
+
 let mapleader = ";"
-nmap <leader>s :e %:p:s,.hpp$,.X123X,:s,.cpp$,.hpp,:s,.X123X$,.cpp,<CR>
+
+" header/source switch
+let extmap = { 'c': 'h', 'h': 'c', 'cpp': 'hpp', 'hpp': 'cpp', }
+nmap <leader>s :exe "edit " . expand('%<') . '.' . extmap[expand('%:e')]<CR>
 
 
 "
@@ -123,7 +127,7 @@ let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
 "
 
 if !filereadable(expand("%:p:h") . "/Makefile")
-  set makeprg=clang++\ -std=c++14\ -Wall\ -Wextra\ -Werror\ -pedantic\ -o\ %<\ %
+  set makeprg=clang++\ -std=c++14\ -Wall\ -Wextra\ -Werror\ -Weffc++\ -pedantic\ -o\ %<\ %
 endif
 
 nmap <leader>m :make<CR>:cw<CR>

@@ -1,6 +1,17 @@
 project = $(notdir $(PWD))
 
 
+# Toolchain selection {{{1
+#
+
+
+CLANG_CC := clang
+CLANG_CXX := clang++
+GCC_CC := gcc-7
+GCC_CXX := g++-7
+GCC_GCOV := gcov-7
+
+
 # Variables that select action if defined {{{1
 #
 
@@ -132,23 +143,23 @@ gen-doc:
 	  && cmake ../.. -G Ninja $(CMAKE_OPTS)
 
 .init_cmake_gcc_debug:
-	$(MAKE) .init_cmake config=gcc-debug CXX=g++-7 CC=gcc-7 CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Debug"
+	$(MAKE) .init_cmake config=gcc-debug CXX=$(GCC_CXX) CC=$(GCC_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Debug"
 init:: .init_cmake_gcc_debug
 
 .init_cmake_gcc_release:
-	$(MAKE) .init_cmake config=gcc-release CXX=g++-7 CC=gcc-7 CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Release"
+	$(MAKE) .init_cmake config=gcc-release CXX=$(GCC_CXX) CC=$(GCC_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Release"
 init:: .init_cmake_gcc_release
 
 .init_cmake_clang_debug:
-	$(MAKE) .init_cmake config=clang-debug CXX=clang++ CC=clang CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Debug"
+	$(MAKE) .init_cmake config=clang-debug CXX=$(CLANG_CXX) CC=$(CLANG_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Debug"
 init:: .init_cmake_clang_debug
 
 .init_cmake_clang_release:
-	$(MAKE) .init_cmake config=clang-release CXX=clang++ CC=clang CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Release"
+	$(MAKE) .init_cmake config=clang-release CXX=$(CLANG_CXX) CC=$(CLANG_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Release"
 init:: .init_cmake_clang_release
 
 .init_cmake_infra:
-	$(MAKE) .init_cmake config=infra CXX=g++-7 CC=gcc-7 GCOV=gcov-7 CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Coverage"
+	$(MAKE) .init_cmake config=infra CXX=$(GCC_CXX) CC=$(GCC_CC) GCOV=$(GCC_GCOV) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Coverage"
 init:: .init_cmake_infra
 
 

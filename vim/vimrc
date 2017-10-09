@@ -67,6 +67,7 @@ set nobackup
 set history=50
 set foldmethod=marker
 set textwidth=78
+set clipboard=unnamed
 
 
 "
@@ -127,7 +128,7 @@ let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
 "
 
 if !filereadable(expand("%:p:h") . "/Makefile")
-  set makeprg=clang++\ -std=c++14\ -Wall\ -Wextra\ -Werror\ -Weffc++\ -pedantic\ -o\ %<\ %
+  set makeprg=clang++\ -std=c++1z\ -Wall\ -Wextra\ -Werror\ -Weffc++\ -pedantic\ -o\ %<\ %
 endif
 
 nmap <leader>m :make<CR>:cw<CR>

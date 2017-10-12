@@ -33,13 +33,13 @@ endif
 # tmux "IDE" {{{1
 #
 
-ide-edit:
+ide:
 	tmux has-session -t "$(project)/edit" >/dev/null 2>&1 \
 	  && ( tmux detach-client -s "$(project)/edit" || true ) \
 	  || tmux new-session -s "$(project)/edit" -n main -d
 	tmux attach-session -t "$(project)/edit"
 
-ide-work:
+work:
 	tmux has-session -t "$(project)/work" >/dev/null 2>&1 \
 	  && ( tmux detach-client -s "$(project)/work" || true ) \
 	  || ( tmux new-session -s "$(project)/work" -n main -d \; \

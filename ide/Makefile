@@ -70,24 +70,24 @@ tags:
 #
 
 
-.cmake:
+.make:
 	printf "\033[1;36m$(build)\033[m\n"
 	cmake --build .work/$(build)
 
 gcc-debug:
-	$(MAKE) .cmake build=$@
+	$(MAKE) .make build=$@
 .build:: gcc-debug
 
 gcc-release:
-	$(MAKE) .cmake build=$@
+	$(MAKE) .make build=$@
 .build:: gcc-release
 
 clang-debug:
-	$(MAKE) .cmake build=$@
+	$(MAKE) .make build=$@
 .build:: clang-debug
 
 clang-release:
-	$(MAKE) .cmake build=$@
+	$(MAKE) .make build=$@
 .build:: clang-release
 
 
@@ -95,25 +95,25 @@ clang-release:
 #
 
 
-.ctest:
+.test:
 	printf "\033[1;36m$(build)\033[m\n"
 	cd .work/$(build) && ctest --output-on-failure
 
-gcc-debug-test:
-	$(MAKE) .ctest build=gcc-debug
-test:: gcc-debug-test
+test-gcc-debug:
+	$(MAKE) .test build=gcc-debug
+test:: test-gcc-debug
 
-gcc-release-test:
-	$(MAKE) .ctest build=gcc-release
-test:: gcc-release-test
+test-gcc-release:
+	$(MAKE) .test build=gcc-release
+test:: test-gcc-release
 
-clang-debug-test:
-	$(MAKE) .ctest build=clang-debug
-test:: clang-debug-test
+test-clang-debug:
+	$(MAKE) .test build=clang-debug
+test:: test-clang-debug
 
-clang-release-test:
-	$(MAKE) .ctest build=clang-release
-test:: clang-release-test
+test-clang-release:
+	$(MAKE) .test build=clang-release
+test:: test-clang-release
 
 
 # Coverage target {{{1
@@ -136,31 +136,31 @@ gen-doc:
 #
 
 
-.init_cmake:
+.init:
 	printf "\033[1;36m$(config)\033[m\n"
 	mkdir -p .work/$(config) \
 	  && cd .work/$(config) \
 	  && cmake ../.. -G Ninja $(CMAKE_OPTS)
 
-.init_cmake_gcc_debug:
-	$(MAKE) .init_cmake config=gcc-debug CXX=$(GCC_CXX) CC=$(GCC_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Debug"
-init:: .init_cmake_gcc_debug
+.init_gcc_debug:
+	$(MAKE) .init config=gcc-debug CXX=$(GCC_CXX) CC=$(GCC_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Debug"
+init:: .init_gcc_debug
 
-.init_cmake_gcc_release:
-	$(MAKE) .init_cmake config=gcc-release CXX=$(GCC_CXX) CC=$(GCC_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Release"
-init:: .init_cmake_gcc_release
+.init_gcc_release:
+	$(MAKE) .init config=gcc-release CXX=$(GCC_CXX) CC=$(GCC_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Release"
+init:: .init_gcc_release
 
-.init_cmake_clang_debug:
-	$(MAKE) .init_cmake config=clang-debug CXX=$(CLANG_CXX) CC=$(CLANG_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Debug"
-init:: .init_cmake_clang_debug
+.init_clang_debug:
+	$(MAKE) .init config=clang-debug CXX=$(CLANG_CXX) CC=$(CLANG_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Debug"
+init:: .init_clang_debug
 
-.init_cmake_clang_release:
-	$(MAKE) .init_cmake config=clang-release CXX=$(CLANG_CXX) CC=$(CLANG_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Release"
-init:: .init_cmake_clang_release
+.init_clang_release:
+	$(MAKE) .init config=clang-release CXX=$(CLANG_CXX) CC=$(CLANG_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Release"
+init:: .init_clang_release
 
-.init_cmake_infra:
-	$(MAKE) .init_cmake config=infra CXX=$(GCC_CXX) CC=$(GCC_CC) GCOV=$(GCC_GCOV) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Coverage"
-init:: .init_cmake_infra
+.init_infra:
+	$(MAKE) .init config=infra CXX=$(GCC_CXX) CC=$(GCC_CC) GCOV=$(GCC_GCOV) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Coverage -DDOCS=yes"
+init:: .init_infra
 
 
 .SILENT:

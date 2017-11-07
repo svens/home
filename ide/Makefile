@@ -34,20 +34,20 @@ endif
 #
 
 ide:
-	tmux has-session -t "$(project)/edit" >/dev/null 2>&1 \
-	  && ( tmux detach-client -s "$(project)/edit" || true ) \
-	  || tmux new-session -s "$(project)/edit" -n main -d
-	tmux attach-session -t "$(project)/edit"
+	tmux has-session -t "$(project)/ide" >/dev/null 2>&1 \
+	  && ( tmux detach-client -s "$(project)/ide" || true ) \
+	  || tmux new-session -s "$(project)/ide" -n main -d
+	tmux attach-session -t "$(project)/ide"
 
 work:
 	tmux has-session -t "$(project)/work" >/dev/null 2>&1 \
 	  && ( tmux detach-client -s "$(project)/work" || true ) \
 	  || ( tmux new-session -s "$(project)/work" -n main -d \; \
-	    new-window -n gcc-debug -c .work/gcc-debug \; \
-	    new-window -n gcc-release -c .work/gcc-release \; \
-	    new-window -n clang-debug -c .work/clang-debug \; \
-	    new-window -n clang-release -c .work/clang-release \; \
-	    new-window -n infra -c .work/infra \; \
+	    new-window -n gcc-debug -c $(PWD)/.work/gcc-debug \; \
+	    new-window -n gcc-release -c $(PWD)/.work/gcc-release \; \
+	    new-window -n clang-debug -c $(PWD)/.work/clang-debug \; \
+	    new-window -n clang-release -c $(PWD)/.work/clang-release \; \
+	    new-window -n infra -c $(PWD)/.work/infra \; \
 	    select-window -t "$(project)/work:main" \; \
 	  )
 	tmux attach-session -t "$(project)/work"

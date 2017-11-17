@@ -6,6 +6,8 @@ filetype off
 set runtimepath+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'OrangeT/vim-csharp'
 Plugin 'SirVer/ultisnips'
 Plugin 'PProvost/vim-ps1'
 call vundle#end()

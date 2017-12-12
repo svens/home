@@ -120,7 +120,7 @@ test:: test-clang-release
 #
 
 gen-cov:
-	ninja -C .work/infra gen-cov
+	ninja -C .work/infra $(project)-cov
 	open .work/infra/cov/index.html
 
 
@@ -128,7 +128,7 @@ gen-cov:
 #
 
 gen-doc:
-	ninja -C .work/infra gen-doc
+	ninja -C .work/infra $(project)-doc
 	open .work/infra/docs/index.html
 
 
@@ -147,7 +147,7 @@ gen-doc:
 init:: .init_gcc_debug
 
 .init_gcc_release:
-	$(MAKE) .init config=gcc-release CXX=$(GCC_CXX) CC=$(GCC_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Release"
+	$(MAKE) .init config=gcc-release CXX=$(GCC_CXX) CC=$(GCC_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Release -D$(project)_bench=yes"
 init:: .init_gcc_release
 
 .init_clang_debug:
@@ -155,11 +155,11 @@ init:: .init_gcc_release
 init:: .init_clang_debug
 
 .init_clang_release:
-	$(MAKE) .init config=clang-release CXX=$(CLANG_CXX) CC=$(CLANG_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Release"
+	$(MAKE) .init config=clang-release CXX=$(CLANG_CXX) CC=$(CLANG_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Release -D$(project)_bench=yes"
 init:: .init_clang_release
 
 .init_infra:
-	$(MAKE) .init config=infra CXX=$(GCC_CXX) CC=$(GCC_CC) GCOV=$(GCC_GCOV) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Coverage -DDOCS=yes"
+	$(MAKE) .init config=infra CXX=$(GCC_CXX) CC=$(GCC_CC) GCOV=$(GCC_GCOV) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Coverage -D$(project)_docs=yes"
 init:: .init_infra
 
 

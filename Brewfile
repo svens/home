@@ -1,0 +1,26 @@
+tap "caskroom/cask"
+tap "homebrew/bundle"
+tap "homebrew/core"
+tap "universal-ctags/universal-ctags"
+
+brew "cmake"
+brew "cscope"
+brew "dos2unix"
+brew "doxygen"
+brew "gcc"
+brew "git"
+brew "lcov"
+brew "ninja"
+brew "tmux"
+brew "tree"
+brew "vim", args: ["with-override-system-vi"]
+brew "youtube-dl"
+brew "zsh"
+brew "zsh-completions"
+brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
+
+cask "firefox"
+cask "iterm2"
+cask "mpv"
+cask "transmission"
+cask "wireshark"

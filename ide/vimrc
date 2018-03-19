@@ -1,3 +1,6 @@
 set makeprg=ninja\ -C\ .work/clang-debug
 set tags=.work/tags
 cscope add .work
+
+runtime ftplugin/man.vim
+set keywordprg=:Man

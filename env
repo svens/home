@@ -10,6 +10,7 @@ setup_darwin ()
 {
     export CLICOLOR=yes
     export LSCOLORS="gxfxcxdxCxdxdxabagacad"
+    export MANPATH=/usr/local/opt/openssl@1.1/share/man:/usr/local/share/man:/usr/share/man
 }
 
 setup_linux ()

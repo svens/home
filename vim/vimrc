@@ -135,7 +135,8 @@ endif
 
 nmap <leader>m :make<CR>:cw<CR>
 nmap <leader>e :clist<CR>
-nmap <leader>h :cclose<CR>
+nmap <leader>o :copen<CR>
+nmap <leader>c :cclose<CR>
 
 if has("cscope")
   set cscopetag cscopetagorder=1
@@ -181,3 +182,27 @@ set list listchars=tab:..,trail:.,extends:>,nbsp:_
 " Disable netrw history
 "
 let g:netrw_dirhistmax = 0
+
+
+"
+" search over all buffers
+"
+
+function! BuffersList()
+  let res = []
+  for b in range(0, bufnr('$'))
+    if buflisted(b)
+      call add(res, bufname(b))
+    endif
+  endfor
+  return res
+endfunction
+
+function! GrepBuffers (expression)
+  exec 'vimgrep /'.a:expression.'/ '.join(BuffersList())
+  exec 'copen'
+endfunction
+
+command! -nargs=+ GrepBufs call GrepBuffers(<q-args>)
+
+nmap <leader>f :call GrepBuffers("<C-R><C-W>")<CR>

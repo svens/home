@@ -1,10 +1,14 @@
 60s http://listen.streamonomy.com/keepfree60s
 70s http://listen.radionomy.com/Bestofthe70s-LudwigRadiocom
+American60s http://listen.radionomy.com:80/AmericanSixtiesRadio
 Bossa http://185.33.21.113:11049
-Oldies http://50.7.129.122:8433/stream
-Kuku http://striiming.trio.ee:8008/kuku.mp3
+British60s http://listen.radionomy.com/britishsixtiesradio
 Elmar http://striiming.trio.ee/elmar.mp3
-RetroFM http://retro.babahhcdn.com/RETRO
+FlowerPowerRadio http://50.7.129.122:8433/stream
+Gold http://listen.radionomy.com/Gold-Star-Radio
+KeepFree60s http://listen.streamonomy.com/keepfree60s
+Kuku http://striiming.trio.ee:8008/kuku.mp3
 R2 http://r2.err.ee/gfx/raadio2128.m3u mpv -playlist
+RetroFM http://retro.babahhcdn.com/RETRO
 StarFM http://shout.babahh.com:8000/starfm
 Vikerraadio http://sb.err.ee/live/vikerraadio.m3u8

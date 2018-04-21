@@ -1,37 +1,35 @@
 #!/bin/sh
 
-set -e
-dev=${dev:-/dev/sde2}
-
-#
-# mount
-#
-if [ "$1" = "mount" ] && ! sudo cryptsetup status work >/dev/null 2>&1; then
-    sudo cryptsetup open $dev work
-    sudo mount /dev/mapper/work /work
-
-#
-# umount
-#
-elif [ "$1" = "umount" ] && sudo cryptsetup status work >/dev/null 2>&1; then
-    sudo umount /work
-    sudo cryptsetup close work
-
-#
-# connect
-#
-elif [ "$1" = "connect" ] && ! ip addr show tun0 2>/dev/null; then
-    sudo openconnect --config=/work/connect/vpn/skype-ext.conf lux.security.skype.net/skype-ext
-
-#
-# disconnect
-#
-elif [ "$1" = "disconnect" ] && ip addr show tun0 >/dev/null 2>&1; then
-    sudo pkill -f openconnect...config=/work/connect/vpn/skype-ext.conf.lux.security.skype.net/skype-ext
-
-#
-# error
-#
-else
-    exit 1
+if [ -z "$1" ]; then
+    echo "mount umount chpass connect disconnect is-connected"
+    exit 0
 fi
+
+case "$1" in
+    mount)
+        hdiutil attach -stdinpass /work/data.sparseimage -mountpoint /work
+        ;;
+
+    umount)
+        hdiutil detach /work
+        ;;
+
+    chpass)
+        hdiutil chpass /work/data.sparseimage
+        ;;
+
+    connect)
+        if [ -z "$(ps -xo args | grep 'ssh.*work-socks' | grep -v grep)" ]; then
+            ssh -fNn work-socks
+        fi
+        sudo networksetup -setsocksfirewallproxystate en0 on
+        ;;
+
+    disconnect)
+        sudo networksetup -setsocksfirewallproxystate en0 off
+        ;;
+
+    is-connected)
+        networksetup -getsocksfirewallproxy en0 | head -1
+        ;;
+esac

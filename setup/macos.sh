@@ -43,6 +43,7 @@ defaults write NSGlobalDomain AppleLanguages -array "en-EE" "et-EE"
 defaults write NSGlobalDomain AppleLocale -string "en_EE"
 defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
 defaults write NSGlobalDomain AppleMetricUnits -bool true
+defaults write NSGlobalDomain AppleICUDateFormatStrings -array "y-MM-dd"
 sudo systemsetup -settimezone "Europe/Tallinn" > /dev/null
 
 
@@ -115,11 +116,11 @@ defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 # Dock, Dashboard {{{1
 #
 
-# Set the icon size of Dock items to 36 pixels
 defaults write com.apple.dock tilesize -int 64
+defaults write com.apple.dock orientation -string "left"
+defaults write com.apple.dock mineffect -string "scale"
 
-# Minimize windows into their application’s icon
-defaults write com.apple.dock minimize-to-application -bool true
+defaults write com.apple.dock minimize-to-application -bool false
 
 # Enable spring loading for all Dock items
 defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
@@ -211,36 +212,12 @@ defaults write org.m0k.transmission WarningLegal -bool false
 # Divvy.app {{{1
 #
 
-open "divvy://import/" \
-  "YnBsaXN0MDDUAQIDBAUIwsNUJHRvcFgkb2JqZWN0c1gkdmVyc2lvblkkYXJjaGl2ZXLR" \
-  "BgdUcm9vdIABrxAcCQofNzg/SUpSU1pbY2RsbXV2fn+Hj5efp6+2vlUkbnVsbNILDA0O" \
-  "ViRjbGFzc1pOUy5vYmplY3RzgBuvEBAPEBESExQVFhcYGRobHB0egAKABYAHgAmAC4AN" \
-  "gA+AEYATgBSAFYAWgBeAGIAZgBrdICEiIyQlJicoKSorCywtLi8wLTEyMy81MTZfEBJz" \
-  "ZWxlY3Rpb25FbmRDb2x1bW5fEBFzZWxlY3Rpb25TdGFydFJvd1xrZXlDb21ib0NvZGVX" \
-  "ZW5hYmxlZF1rZXlDb21ib0ZsYWdzXxAUc2VsZWN0aW9uU3RhcnRDb2x1bW5bc2l6ZUNv" \
-  "bHVtbnNac3ViZGl2aWRlZFduYW1lS2V5Vmdsb2JhbF8QD3NlbGVjdGlvbkVuZFJvd1hz" \
-  "aXplUm93cxABEAAQBAkSAAwAABAGCIADCRAFgARaTGVmdCB0aGlyZNI5Ojs+WCRjbGFz" \
-  "c2VzWiRjbGFzc25hbWWiPD1YU2hvcnRjdXRYTlNPYmplY3RYU2hvcnRjdXTdICEiIyQl" \
-  "JicoKSorC0AtQS9DRDEyRi81MTYQAxAuCRIADAAAEAIIgAYJgARcQ2VudGVyIHRoaXJk" \
-  "3SAhIiMkJSYnKCkqKws1LUsvTS4xMk8vNTE2ECUJEgAMAAAIgAgJgARbUmlnaHQgdGhp" \
-  "cmTdICEiIyQlJicoKSorC0QtLi9VLTEyVy81MTYJEgAUAAAIgAoJgARZTGVmdCBoYWxm" \
-  "3SAhIiMkJSYnKCkqKws1LVwvXkAxMmAvNTE2ECUJEgAUAAAIgAwJgARaUmlnaHQgaGFs" \
-  "Zt0gISIjJCUmJygpKisLNS1lL2ctMTJpL0QxNhAoCRIAFAAACIAOCYAEWFRvcCBoYWxm" \
-  "3SAhIiMkJSYnKCkqKws1QG4vcC0xMnIvNTE2ECYJEgAUAAAIgBAJgARbQm90dG9tIGhh" \
-  "bGbdICEiIyQlJicoKSorCywtdy95LTEyey9EMTYQWQkSAAwAAAiAEgmABFDdICEiIyQl" \
-  "JicoKSorC0AtgC+CRDEyey9EMTYQWwkSAAwAAAiAEgmABN0gISIjJCUmJygpKisLNS2I" \
-  "L4ouMTJ7L0QxNhBcCRIADAAACIASCYAE3SAhIiMkJSYnKCkqKwssQJAvki0xMnsvNTE2" \
-  "EFMJEgAMAAAIgBIJgATdICEiIyQlJicoKSorC0BAmC+aRDEyey81MTYQVAkSAAwAAAiA" \
-  "EgmABN0gISIjJCUmJygpKisLNUCgL6IuMTJ7LzUxNhBVCRIADAAACIASCYAE3SAhIiMk" \
-  "JSYnKCkqKws1LagvqkQxMnsvNTE2ECUJEgAcAAAIgBIJgATdICEiIyQlJicoKSorC0At" \
-  "Li+xLTEyey81MTYJEgAcAAAIgBIJgATdICEiIyQlJicoKSorC0BEty+5RDEyey9AMTYQ" \
-  "VwkSAAwAAAiAEgmABNI5Or/Ao8DBPV5OU011dGFibGVBcnJheVdOU0FycmF5EgABhqBf" \
-  "EA9OU0tleWVkQXJjaGl2ZXIACAARABYAHwAoADIANQA6ADwAWwBhAGYAbQB4AHoAjQCP" \
-  "AJEAkwCVAJcAmQCbAJ0AnwChAKMApQCnAKkAqwCtAMgA3QDxAP4BBgEUASsBNwFCAUoB" \
-  "UQFjAWwBbgFwAXIBcwF4AXoBewF9AX4BgAGCAY0BkgGbAaYBqQGyAbsBxAHfAeEB4wHk" \
-  "AekB6wHsAe4B7wHxAf4CGQIbAhwCIQIiAiQCJQInAjMCTgJPAlQCVQJXAlgCWgJkAn8C" \
-  "gQKCAocCiAKKAosCjQKYArMCtQK2ArsCvAK+Ar8CwQLKAuUC5wLoAu0C7gLwAvEC8wL/" \
-  "AxoDHAMdAyIDIwMlAyYDKAMpA0QDRgNHA0wDTQNPA1ADUgNtA28DcAN1A3YDeAN5A3sD" \
-  "lgOYA5kDngOfA6EDogOkA78DwQPCA8cDyAPKA8sDzQPoA+oD6wPwA/ED8wP0A/YEEQQT" \
-  "BBQEGQQaBBwEHQQfBDoEOwRABEEEQwREBEYEYQRjBGQEaQRqBGwEbQRvBHQEeASHBI8E" \
-  "lAAAAAAAAAIBAAAAAAAAAMQAAAAAAAAAAAAAAAAAAASm"
+#open "divvy://import/YnBsaXN0MDDUAQIDBAUIwsNUJHRvcFgkb2JqZWN0c1gkdmVyc2lvblkkYXJjaGl2ZXLRBgdUcm9vdIABrxAcCQofNzg/SUpSU1pbY2RsbXV2fn+Hj5efp6+2vlUkbnVsbNILDA0OViRjbGFzc1pOUy5vYmplY3RzgBuvEBAPEBESExQVFhcYGRobHB0egAKABYAHgAmAC4ANgA+AEYATgBSAFYAWgBeAGIAZgBrdICEiIyQlJicoKSorCywtLi8wLTEyMy81MTZfEBJzZWxlY3Rpb25FbmRDb2x1bW5fEBFzZWxlY3Rpb25TdGFydFJvd1xrZXlDb21ib0NvZGVXZW5hYmxlZF1rZXlDb21ib0ZsYWdzXxAUc2VsZWN0aW9uU3RhcnRDb2x1bW5bc2l6ZUNvbHVtbnNac3ViZGl2aWRlZFduYW1lS2V5Vmdsb2JhbF8QD3NlbGVjdGlvbkVuZFJvd1hzaXplUm93cxABEAAQBAkSAAwAABAGCIADCRAFgARaTGVmdCB0aGlyZNI5Ojs+WCRjbGFzc2VzWiRjbGFzc25hbWWiPD1YU2hvcnRjdXRYTlNPYmplY3RYU2hvcnRjdXTdICEiIyQlJicoKSorC0AtQS9DRDEyRi81MTYQAxAuCRIADAAAEAIIgAYJgARcQ2VudGVyIHRoaXJk3SAhIiMkJSYnKCkqKws1LUsvTS4xMk8vNTE2ECUJEgAMAAAIgAgJgARbUmlnaHQgdGhpcmTdICEiIyQlJicoKSorC0QtLi9VLTEyVy81MTYJEgAUAAAIgAoJgARZTGVmdCBoYWxm3SAhIiMkJSYnKCkqKws1LVwvXkAxMmAvNTE2ECUJEgAUAAAIgAwJgARaUmlnaHQgaGFsZt0gISIjJCUmJygpKisLNS1lL2ctMTJpL0QxNhAoCRIAFAAACIAOCYAEWFRvcCBoYWxm3SAhIiMkJSYnKCkqKws1QG4vcC0xMnIvNTE2ECYJEgAUAAAIgBAJgARbQm90dG9tIGhhbGbdICEiIyQlJicoKSorCywtdy95LTEyey9EMTYQWQkSAAwAAAiAEgmABFDdICEiIyQlJicoKSorC0AtgC+CRDEyey9EMTYQWwkSAAwAAAiAEgmABN0gISIjJCUmJygpKisLNS2IL4ouMTJ7L0QxNhBcCRIADAAACIASCYAE3SAhIiMkJSYnKCkqKwssQJAvki0xMnsvNTE2EFMJEgAMAAAIgBIJgATdICEiIyQlJicoKSorC0BAmC+aRDEyey81MTYQVAkSAAwAAAiAEgmABN0gISIjJCUmJygpKisLNUCgL6IuMTJ7LzUxNhBVCRIADAAACIASCYAE3SAhIiMkJSYnKCkqKws1LagvqkQxMnsvNTE2ECUJEgAcAAAIgBIJgATdICEiIyQlJicoKSorC0AtLi+xLTEyey81MTYJEgAcAAAIgBIJgATdICEiIyQlJicoKSorC0BEty+5RDEyey9AMTYQVwkSAAwAAAiAEgmABNI5Or/Ao8DBPV5OU011dGFibGVBcnJheVdOU0FycmF5EgABhqBfEA9OU0tleWVkQXJjaGl2ZXIACAARABYAHwAoADIANQA6ADwAWwBhAGYAbQB4AHoAjQCPAJEAkwCVAJcAmQCbAJ0AnwChAKMApQCnAKkAqwCtAMgA3QDxAP4BBgEUASsBNwFCAUoBUQFjAWwBbgFwAXIBcwF4AXoBewF9AX4BgAGCAY0BkgGbAaYBqQGyAbsBxAHfAeEB4wHkAekB6wHsAe4B7wHxAf4CGQIbAhwCIQIiAiQCJQInAjMCTgJPAlQCVQJXAlgCWgJkAn8CgQKCAocCiAKKAosCjQKYArMCtQK2ArsCvAK+Ar8CwQLKAuUC5wLoAu0C7gLwAvEC8wL/AxoDHAMdAyIDIwMlAyYDKAMpA0QDRgNHA0wDTQNPA1ADUgNtA28DcAN1A3YDeAN5A3sDlgOYA5kDngOfA6EDogOkA78DwQPCA8cDyAPKA8sDzQPoA+oD6wPwA/ED8wP0A/YEEQQTBBQEGQQaBBwEHQQfBDoEOwRABEEEQwREBEYEYQRjBGQEaQRqBGwEbQRvBHQEeASHBI8ElAAAAAAAAAIBAAAAAAAAAMQAAAAAAAAAAAAAAAAAAASm"
+
+
+# Kill affected applications {{{1
+#
+
+for app in "cfprefsd" "Dock" "Finder" "SystemUIServer"; do
+  killall "${app}"
+done

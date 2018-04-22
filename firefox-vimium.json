@@ -1,0 +1,26 @@
+{
+  "settingsVersion": "1.63.3",
+  "exclusionRules": [
+    {
+      "pattern": "https?://feedly.com/*",
+      "passKeys": ""
+    }
+  ],
+  "filterLinkHints": false,
+  "waitForEnterForFilteredHints": true,
+  "hideHud": false,
+  "keyMappings": "unmap F\nmap F LinkHints.activateModeToOpenInNewForegroundTab\n\nunmap i\nmap I enterInsertMode",
+  "linkHintCharacters": "sadfjklewcmpgh",
+  "linkHintNumbers": "0123456789",
+  "newTabUrl": "about:newtab",
+  "nextPatterns": "next,more,newer,>,›,→,»,≫,>>",
+  "previousPatterns": "prev,previous,back,older,<,‹,←,«,≪,<<",
+  "regexFindMode": false,
+  "ignoreKeyboardLayout": false,
+  "scrollStepSize": 50,
+  "smoothScroll": false,
+  "grabBackFocus": false,
+  "searchEngines": "g: https://www.google.com/search?q=%s\na: https://www.acronymfinder.com/~/search/af.aspx?Acronym=%s&string=exact\nc: https://www.google.com/search?q=%s+site:en.cppreference.com&btnI=I%27m%20Feeling%20Lucky\nmsdn: https://www.google.com/search?q=%s+site:msdn.microsoft.com&btnI=I%27m%20Feeling%20Lucky\net: http://translate.google.com/?source=osdd#et|en|%s\nen: http://translate.google.com/?source=osdd#en|et|%s\nqs: http://www.eki.ee/dict/qs/index.cgi?Q=%s\nsyn: http://dict.ibs.ee/syn/thesaurus.cgi?word=%s\nkv: http://www.keelevara.ee/login/?q=%s\nwet: http://et.wikipedia.org/wiki/Special:Search?search=%s\nwen: http://en.wikipedia.org/wiki/Special:Search?search=%s\nf: http://www.imdb.com/find?q=%s\nt: http://thepiratebay.org/search/%s\nst: http://www.addic7ed.com/search.php?search=%s\nsf: http://subscene.com/subtitles/title?q=%s\nyt: http://www.youtube.com/results?search_query=%s\nfin: http://finance.yahoo.com/q?s=%s\nvso: http://skype.vso.io/%s\nperfmon: http://sfbperfmon/network.html?%7B%22poolFilter%22:%22%s.infra.lync.com%22,%22viewID%22:%22NetworkDiagram%22%7D\nosp: https://skypeunimatrix.trafficmanager.net/Framework/Machine/Overview?identity=%s.infra.lync.com\nnagios: https://monitor.skype.net/mdn/nagios/cgi-bin/status.cgi?host=%s\nmonitor: https://monitor.skype.net/ccdata/%s/",
+  "searchUrl": "https://www.google.com/search?q=",
+  "userDefinedLinkHintCss": "div > .vimiumHintMarker {\n/* linkhint boxes */\nbackground: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFF785),\n  color-stop(100%,#FFC542));\nborder: 1px solid #E3BE23;\n}\n\ndiv > .vimiumHintMarker span {\n/* linkhint text */\ncolor: black;\nfont-weight: bold;\nfont-size: 12px;\n}\n\ndiv > .vimiumHintMarker > .matchingCharacter {\n}"
+}

@@ -1,0 +1,23 @@
+#!/bin/sh
+
+case $# in
+  1)
+    case $1 in
+      start)
+        echo Start
+        launchctl load /Library/LaunchAgents/com.paloaltonetworks.gp.pangpa.plist
+        launchctl load /Library/LaunchAgents/com.paloaltonetworks.gp.pangps.plist
+        exit 0
+        ;;
+      stop)
+        echo Stop
+        launchctl remove com.paloaltonetworks.gp.pangps.plist
+        launchctl remove com.paloaltonetworks.gp.pangpa.plist
+        exit 0
+        ;;
+    esac
+    ;;
+esac
+
+echo "Usage: $(basename $0) start|stop"
+exit 1

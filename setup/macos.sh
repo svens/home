@@ -4,6 +4,7 @@ osascript -e 'tell application "System Preferences" to quit'
 sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
+
 # UI/UX {{{1
 #
 echo "UI/UX"
@@ -27,7 +28,6 @@ defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 1
 
 
-
 # Input devices {{{1
 #
 echo "Input devices"
@@ -46,6 +46,24 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticTextCompletionEnabled -bool false
+
+
+# Keyboard shortcuts {{{1
+#
+echo "Keyboard shortcuts"
+
+# Focus dock (F9)
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 8 "{ enabled = 1; value = { parameters = ( 65535, 101, 8388608 ); type = 'standard'; }; }"
+
+# Focus menu (F10)
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 7 "{ enabled = 1; value = { parameters = ( 65535, 109, 8388608 ); type = 'standard'; }; }"
+
+# Focus status menu (F11)
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 57 "{ enabled = 1; value = { parameters = ( 65535, 103, 8388608 ); type = 'standard'; }; }"
+
+# Show notificate center (F12)
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 163 "{ enabled = 1; value = { parameters = ( 65535, 111, 8388608 ); type = 'standard'; }; }"
+
 
 # Language, formats, etc {{{1
 #

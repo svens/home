@@ -4,7 +4,7 @@ class Vim < Formula
   # vim should only be updated every 50 releases on multiples of 50
   url "https://github.com/vim/vim/archive/v8.1.0100.tar.gz"
   sha256 "5156dd2fe74886b126b174d293cb4f8948d57a8dacd5d8310ded66098724e869"
-  revision 2
+  revision 3
   head "https://github.com/vim/vim.git"
 
   def install
@@ -37,10 +37,7 @@ class Vim < Formula
     # https://github.com/vim/vim/issues/1031
     ENV.deparallelize
 
-    # If stripping the binaries is enabled, vim will segfault with
-    # statically-linked interpreters like ruby
-    # https://github.com/vim/vim/issues/114
-    system "make", "install", "prefix=#{prefix}", "STRIP=#{which "true"}"
+    system "make", "install", "prefix=#{prefix}"
     bin.install_symlink "vim" => "vi"
   end
 end

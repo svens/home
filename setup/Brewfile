@@ -17,6 +17,7 @@ brew "youtube-dl"
 brew "zsh"
 brew "zsh-completions"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
+brew "svens/home/vim"
 
 cask "firefox"
 cask "iterm2"

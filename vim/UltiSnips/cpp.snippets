@@ -11,7 +11,9 @@ endsnippet
 snippet na "namespace anonoymous"
 namespace {
 
+
 $0
+
 
 } // namespace
 endsnippet
@@ -29,64 +31,27 @@ endsnippet
 
 
 snippet nss "namespace { namespace {"
-namespace ${1:`!v expand('%:h:h')`} { namespace ${2:`!v expand('%:h:t')`} {
+namespace ${1:`!v expand('%:h:h')`}::${2:`!v expand('%:h:t')`} {
 
 
 $0
 
 
-}} // namespace $1::$2
+} // namespace $1::$2
 endsnippet
 
 
-snippet cl "simple class"
-class ${1:`!v substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`}
-{
-public:
-
-	$0
-
-private:
-
-};
-endsnippet
-
-
-snippet class "simple class"
+snippet class0 "simple class"
 class ${1:`!v substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`}
 {
 public:
 
 	$1 ()
-	{
-	}
+	{ }
 
 
-	$1 (const $1 &that)
-	{
-	}
-
-
-	$1 ($1 &&that)
-	{
-	}
-
-
-	~$1 ()
-	{
-	}
-
-
-	$1 &operator= (const $1 &that)
-	{
-		return *this;
-	}
-
-
-	$1 &operator= ($1 &&that)
-	{
-		return *this;
-	}
+	~$1 () noexcept
+	{ }
 
 
 private:
@@ -96,30 +61,55 @@ private:
 endsnippet
 
 
-snippet cld "class with default ctors/dtor"
+snippet class5 "class of rule of five"
 class ${1:`!v substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`}
 {
 public:
 
-	$1 () = default;
+	$1 ()
+		: $1($0)
+	{ }
 
-	$1 (const $1 &that) = default;
-	$1 ($1 &&that) = default;
 
-	~$1 () = default;
+	~$1 () noexcept
+	{ }
 
-	$1 &operator= (const $1 &that) = default;
-	$1 &operator= ($1 &&that) = default;
+
+	$1 (const $1 &that)
+		: $1(that.XXX)
+	{ }
+
+
+	$1 ($1 &&that) noexcept
+		: $1(std::exchange(that.XXX, {}))
+	{ }
+
+
+	$1 &operator= (const $1 &that)
+	{
+		return *this = $1(that);
+	}
+
+
+	$1 &operator= ($1 &&that) noexcept
+	{
+		using std::swap;
+		swap(XXX, that.XXX);
+		return *this;
+	}
 
 
 private:
 
-	$0
+	XXX;
+
+	$1 (XXX)
+	{ }
 };
 endsnippet
 
 
-snippet fe "foreach"
+snippet foreach "foreach"
 for (auto &${1:it}: ${2:data})
 {
 	$0

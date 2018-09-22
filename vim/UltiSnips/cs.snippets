@@ -1,0 +1,133 @@
+snippet N "namespace"
+namespace `!v substitute(expand('%:h:r'), '/', '.', 'g')`
+{
+	$0
+}
+endsnippet
+
+
+snippet M "void main()"
+static void Main ()
+{
+	$0
+}
+endsnippet
+
+
+snippet M "void main(args)"
+static void Main (string[] args)
+{
+	$0
+}
+endsnippet
+
+
+snippet M "int main()"
+static int Main ()
+{
+	$0
+	return 0;
+}
+endsnippet
+
+
+snippet M "int main(args)"
+static int Main (string[] args)
+{
+	$0
+	return 0;
+}
+endsnippet
+
+
+snippet I "interface"
+interface I`!v substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`
+{
+	$0
+}
+endsnippet
+
+
+snippet C "class"
+class `!v substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`
+{
+	$0
+}
+endsnippet
+
+
+snippet S "struct"
+struct `!v substitute(expand('%:t:r'), '\.\|\/', '_', 'g')`
+{
+	$0
+}
+endsnippet
+
+
+snippet if "if"
+if ($1)
+{
+	$0
+}
+endsnippet
+
+
+snippet elseif "else if"
+else if ($1)
+{
+	$0
+}
+endsnippet
+
+
+snippet else "else"
+else
+{
+	$0
+}
+endsnippet
+
+
+snippet do "do"
+do
+{
+	$0
+} while ($1);
+endsnippet
+
+
+snippet while "while"
+while ($1)
+{
+	$0
+}
+endsnippet
+
+
+snippet foreach "foreach"
+foreach (var ${1:value} in $2)
+{
+	$0
+}
+endsnippet
+
+
+snippet switch "switch"
+switch ($1)
+{
+	case $2:
+		$0
+		break;
+}
+endsnippet
+
+
+snippet try "try"
+try
+{
+	$0
+}
+catch (${1:Exception} ex)
+{
+}
+endsnippet

@@ -7,9 +7,9 @@ project = $(notdir $(PWD))
 
 CLANG_CC := clang
 CLANG_CXX := clang++
-GCC_CC := gcc-7
-GCC_CXX := g++-7
-GCC_GCOV := gcov-7
+GCC_CC := gcc-8
+GCC_CXX := g++-8
+GCC_GCOV := gcov-8
 
 
 # Variables that select action if defined {{{1

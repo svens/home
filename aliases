@@ -14,11 +14,6 @@ alias sudo='sudo -p "[%p -> %U] Password: "'
 
 alias grep='grep --color=auto'
 
-alias cal='LC_TIME=et_EE.UTF-8 cal -3'
-
-alias crypt='openssl aes-256-cbc -salt'
-alias decrypt='openssl aes-256-cbc -d'
-
 alias webserver='python -m SimpleHTTPServer'
 alias http_time='curl -w "    namelookup %{time_namelookup}\n       connect %{time_connect}\n    appconnect %{time_appconnect}\n   pretransfer %{time_pretransfer}\n      redirect %{time_redirect}\n starttransfer %{time_starttransfer}\n         total %{time_total}\n" -o /dev/null -s'
 

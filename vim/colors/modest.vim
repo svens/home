@@ -19,6 +19,7 @@ hi Todo         ctermfg=black ctermbg=brown guifg=black guibg=darkyellow
 hi Type         ctermfg=white cterm=bold    guifg=grey95
 hi RightMargin  ctermfg=red                 guifg=red
 hi Visual       ctermfg=black ctermbg=gray
+hi Search       ctermfg=black ctermbg=cyan  guifg=black guibg=cyan
 
 hi Pmenu ctermbg=brown
 hi PmenuSel ctermbg=yellow

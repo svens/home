@@ -1,4 +1,5 @@
 project = $(notdir $(PWD))
+project_root = ../..
 
 
 # Toolchain selection {{{1
@@ -140,7 +141,7 @@ gen-doc:
 	printf "\033[1;36m$(config)\033[m\n"
 	mkdir -p .work/$(config) \
 	  && cd .work/$(config) \
-	  && cmake ../.. -G Ninja $(CMAKE_OPTS)
+	  && cmake $(project_root) -G Ninja $(CMAKE_OPTS)
 
 .init_gcc_debug:
 	$(MAKE) .init config=gcc-debug CXX=$(GCC_CXX) CC=$(GCC_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Debug"

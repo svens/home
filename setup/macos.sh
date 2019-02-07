@@ -50,6 +50,7 @@ defaults write NSGlobalDomain NSAutomaticTextCompletionEnabled -bool false
 # Trackpad
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Dragging -bool false
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -bool true
+defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
 
 # Keyboard shortcuts {{{1

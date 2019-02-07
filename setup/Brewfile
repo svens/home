@@ -10,7 +10,7 @@ brew "dos2unix"
 brew "doxygen"
 brew "gcc"
 brew "git"
-brew "lcov"
+brew "lcov", args: ["HEAD"]
 brew "ninja"
 brew "tmux"
 brew "tree"

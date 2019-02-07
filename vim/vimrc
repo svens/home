@@ -179,8 +179,12 @@ set list listchars=tab:..,trail:.,extends:>,nbsp:_
 
 
 "
-" Disable netrw history
+" netrw settings
 "
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_sort_sequence = '\/$,\.{h,c}pp$,*,\.swp$'
+let g:netrw_sort_options = "i"
 let g:netrw_dirhistmax = 0
 
 

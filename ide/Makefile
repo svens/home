@@ -1,146 +1,61 @@
-project = $(notdir $(PWD))
-project_root = ../..
+link := $(shell readlink project 2>/dev/null || echo $$?)
+ifeq ($(link),1)
+  $(error Create symlink 'project' to project root directory)
+endif
+project_root := $(abspath $(link))
+project := $(notdir $(project_root))
 
 
-# Toolchain selection {{{1
-#
+all: build
+
+
+# Toolchain {{{1
 
 
 CLANG_CC := clang
 CLANG_CXX := clang++
 GCC_CC := gcc-8
 GCC_CXX := g++-8
-GCC_GCOV := gcov-8
+GCC_COV := gcov-8
 
 
-# Variables that select action if defined {{{1
-#
+# Workspace {{{1
 
-# if has value, edit module
-edit :=
-
-
-# Variable based action selection {{{1
-#
-
-
-ifneq ($(edit),)
-all: .edit
-else
-all: .build
-endif
-
-
-# tmux "IDE" {{{1
-#
 
 ide:
 	tmux has-session -t "$(project)/ide" >/dev/null 2>&1 \
 	  && ( tmux detach-client -s "$(project)/ide" || true ) \
-	  || tmux new-session -s "$(project)/ide" -n main -d
+	  || ( \
+	    tmux new-session -s "$(project)/ide" -n main -c $(project_root) -d \; \
+	    new-window -n work -c . \; \
+	    select-window -t "$(project)/ide:main" \; \
+	  )
 	tmux attach-session -t "$(project)/ide"
+
 
 work:
 	tmux has-session -t "$(project)/work" >/dev/null 2>&1 \
 	  && ( tmux detach-client -s "$(project)/work" || true ) \
-	  || ( tmux new-session -s "$(project)/work" -n main -d \; \
-	    new-window -n gcc-debug -c $(PWD)/.work/gcc-debug \; \
-	    new-window -n gcc-release -c $(PWD)/.work/gcc-release \; \
-	    new-window -n clang-debug -c $(PWD)/.work/clang-debug \; \
-	    new-window -n clang-release -c $(PWD)/.work/clang-release \; \
-	    new-window -n infra -c $(PWD)/.work/infra \; \
+	  || ( \
+	    tmux new-session -s "$(project)/work" -n main -c $(project_root) -d \; \
+	    new-window -n work -c . \; \
+	    new-window -n gcc-debug -c gcc-debug \; \
+	    new-window -n gcc-release -c gcc-release \; \
+	    new-window -n clang-debug -c clang-debug \; \
+	    new-window -n clang-release -c clang-release \; \
+	    new-window -n cov -c cov \; \
 	    select-window -t "$(project)/work:main" \; \
 	  )
 	tmux attach-session -t "$(project)/work"
 
 
-# Generic editing target {{{1
-#
-
-
-.edit:
-	$(EDITOR) $(EDITORFLAGS) $(edit)/list.cmake $$(grep "^[[:space:]]*$(edit)/" $(edit)/list.cmake)
-
-tags:
-	find . -name '*pp' -not -path './.work/*' > .work/sources.txt
-	cscope -bckR -I. -I.work/clang-debug/$(project) -f.work/cscope.out -i.work/sources.txt
-	ctags -R -f .work/tags --excmd=pattern --file-scope=no --if0 --tag-relative -L.work/sources.txt
-
-
-# Building targets {{{1
-#
-
-
-.make:
-	printf "\033[1;36m$(build)\033[m\n"
-	cmake --build .work/$(build)
-
-gcc-debug:
-	$(MAKE) .make build=$@
-.build:: gcc-debug
-
-gcc-release:
-	$(MAKE) .make build=$@
-.build:: gcc-release
-
-clang-debug:
-	$(MAKE) .make build=$@
-.build:: clang-debug
-
-clang-release:
-	$(MAKE) .make build=$@
-.build:: clang-release
-
-
-# Testing targets {{{1
-#
-
-
-.test:
-	printf "\033[1;36m$(build)\033[m\n"
-	cd .work/$(build) && ctest --output-on-failure
-
-test-gcc-debug:
-	$(MAKE) .test build=gcc-debug
-test:: test-gcc-debug
-
-test-gcc-release:
-	$(MAKE) .test build=gcc-release
-test:: test-gcc-release
-
-test-clang-debug:
-	$(MAKE) .test build=clang-debug
-test:: test-clang-debug
-
-test-clang-release:
-	$(MAKE) .test build=clang-release
-test:: test-clang-release
-
-
-# Coverage target {{{1
-#
-
-gen-cov:
-	ninja -C .work/infra $(project)-cov
-	open .work/infra/cov/index.html
-
-
-# Documentation target {{{1
-#
-
-gen-doc:
-	ninja -C .work/infra $(project)-doc
-	open .work/infra/docs/index.html
-
-
-# Buildsystem(s) initialisation {{{1
-#
+# Init {{{1
 
 
 .init:
 	printf "\033[1;36m$(config)\033[m\n"
-	mkdir -p .work/$(config) \
-	  && cd .work/$(config) \
+	mkdir -p $(config) \
+	  && cd $(config) \
 	  && cmake $(project_root) -G Ninja $(CMAKE_OPTS)
 
 .init_gcc_debug:
@@ -159,9 +74,68 @@ init:: .init_clang_debug
 	$(MAKE) .init config=clang-release CXX=$(CLANG_CXX) CC=$(CLANG_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Release -D$(project)_bench=yes"
 init:: .init_clang_release
 
-.init_infra:
-	$(MAKE) .init config=infra CXX=$(GCC_CXX) CC=$(GCC_CC) GCOV=$(GCC_GCOV) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Coverage -D$(project)_docs=yes"
-init:: .init_infra
+.init_cov:
+	$(MAKE) .init config=cov CXX=$(GCC_CXX) CC=$(GCC_CC) COV=$(GCC_COV) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Coverage -D$(project)_docs=yes"
+init:: .init_cov
+
+
+# Build {{{1
+
+
+.build:
+	printf "\033[1;36m$(config)\033[m\n"
+	cmake --build $(config)
+
+.build_gcc_debug:
+	$(MAKE) .build config=gcc-debug
+build:: .build_gcc_debug
+
+.build_gcc_release:
+	$(MAKE) .build config=gcc-release
+build:: .build_gcc_release
+
+.build_clang_debug:
+	$(MAKE) .build config=clang-debug
+build:: .build_clang_debug
+
+.build_clang_release:
+	$(MAKE) .build config=clang-release
+build:: .build_clang_release
+
+
+# Test {{{1
+
+
+.test:
+	printf "\033[1;36m$(config)\033[m\n"
+	cmake --build $(config) --target test
+
+.test_gcc_debug:
+	$(MAKE) .test config=gcc-debug
+test:: .test_gcc_debug
+
+.test_gcc_release:
+	$(MAKE) .test config=gcc-release
+test:: .test_gcc_release
+
+.test_clang_debug:
+	$(MAKE) .test config=clang-debug
+test:: .test_clang_debug
+
+.test_clang_release:
+	$(MAKE) .test config=clang-release
+test:: .test_clang_release
+
+
+# Coverage {{{1
+
+
+gen-cov:
+	ninja -C cov $(project)-cov
+	open cov/cov/index.html
+
+
+# }}}1
 
 
 .SILENT:

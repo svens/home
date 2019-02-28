@@ -14,7 +14,7 @@ alias sudo='sudo -p "[%p -> %U] Password: "'
 
 alias grep='grep --color=auto'
 
-alias webserver='python -m SimpleHTTPServer'
+alias webserver='python3 -m http.server'
 alias http_time='curl -w "    namelookup %{time_namelookup}\n       connect %{time_connect}\n    appconnect %{time_appconnect}\n   pretransfer %{time_pretransfer}\n      redirect %{time_redirect}\n starttransfer %{time_starttransfer}\n         total %{time_total}\n" -o /dev/null -s'
 
 timer ()

@@ -19,7 +19,6 @@
 	submodule = log
 
 [alias]
-	it = !git init && git commit -m "root" --allow-empty
 	amend = commit --amend --no-edit
 	url = remote get-url origin
 	home = !open $(git url)

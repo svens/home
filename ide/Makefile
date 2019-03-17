@@ -63,7 +63,7 @@ work:
 init:: .init_gcc_debug
 
 .init_gcc_release:
-	$(MAKE) .init config=gcc-release CXX=$(GCC_CXX) CC=$(GCC_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Release -D$(project)_bench=yes"
+	$(MAKE) .init config=gcc-release CXX=$(GCC_CXX) CC=$(GCC_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Release -D$(project)_benchmarks=yes"
 init:: .init_gcc_release
 
 .init_clang_debug:
@@ -71,12 +71,18 @@ init:: .init_gcc_release
 init:: .init_clang_debug
 
 .init_clang_release:
-	$(MAKE) .init config=clang-release CXX=$(CLANG_CXX) CC=$(CLANG_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Release -D$(project)_bench=yes"
+	$(MAKE) .init config=clang-release CXX=$(CLANG_CXX) CC=$(CLANG_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Release -D$(project)_benchmarks=yes"
 init:: .init_clang_release
 
 .init_cov:
 	$(MAKE) .init config=cov CXX=$(GCC_CXX) CC=$(GCC_CC) COV=$(GCC_COV) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Coverage -D$(project)_docs=yes"
 init:: .init_cov
+
+
+# Nuke {{{1
+
+nuke:
+	rm -rf {clang,gcc}-{debug,release} cov
 
 
 # Build {{{1

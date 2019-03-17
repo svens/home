@@ -16,7 +16,7 @@ alias grep='grep --color=auto'
 alias webserver='python3 -m http.server'
 alias http_time='curl -w "    namelookup %{time_namelookup}\n       connect %{time_connect}\n    appconnect %{time_appconnect}\n   pretransfer %{time_pretransfer}\n      redirect %{time_redirect}\n starttransfer %{time_starttransfer}\n         total %{time_total}\n" -o /dev/null -s'
 
-edit ()
+e ()
 {
   if test -d $1 -a -f $1/list.cmake; then
     ${EDITOR:-vim} ${EDITORFLAGS} $1/list.cmake $(grep "^[[:space:]]*$1/" $1/list.cmake)

@@ -19,6 +19,7 @@
 	submodule = log
 
 [alias]
+	it = !git init && git add . && git commit -am \"Initial commit\"
 	amend = commit --amend --no-edit
 	url = remote get-url origin
 	home = !open $(git url)
@@ -48,9 +49,3 @@
 
 [fetch]
 	prune = true
-
-[filter "lfs"]
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f

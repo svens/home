@@ -82,7 +82,7 @@ init:: .init_cov
 # Nuke {{{1
 
 nuke:
-	rm -rf {clang,gcc}-{debug,release} cov
+	rm -rf clang-debug clang-release gcc-debug gcc-release cov
 
 
 # Build {{{1

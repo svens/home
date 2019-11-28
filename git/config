@@ -23,8 +23,6 @@
 	amend = commit --amend --no-edit
 	url = remote get-url origin
 	home = !open $(git url)
-	a = branch --all
-	s = status --short --branch
 	st = status
 	br = branch
 	co = checkout

@@ -10,7 +10,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 echo "UI/UX"
 
 # menu: no transparency
-defaults write com.apple.universalaccess reduceTransparency -bool true
+defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
 
 # Highlight color
 defaults write NSGlobalDomain AppleHighlightColor -string "0.752941 0.964706 0.678431"

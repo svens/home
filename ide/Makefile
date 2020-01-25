@@ -12,11 +12,12 @@ all: build
 # Toolchain {{{1
 
 
-CLANG_CC := clang
-CLANG_CXX := clang++
-GCC_CC := gcc-8
-GCC_CXX := g++-8
-GCC_COV := gcov-8
+-include toolchain.mk
+CLANG_CC ?= clang
+CLANG_CXX ?= clang++
+GCC_CC ?= gcc
+GCC_CXX ?= g++
+GCC_COV ?= gcov
 
 
 # Workspace {{{1
@@ -53,7 +54,7 @@ work:
 
 
 .init:
-	printf "\033[1;36m$(config)\033[m\n"
+	printf "\033[1;36m$(config)\033[m (CC=$(CC) CXX=$(CXX) COV=$(COV))\n"
 	mkdir -p $(config) \
 	  && cd $(config) \
 	  && cmake $(project_root) -G Ninja $(CMAKE_OPTS)

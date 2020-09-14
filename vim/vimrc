@@ -36,9 +36,9 @@ set termencoding=utf-8
 "
 " tabulation
 "
-set expandtab
-set smarttab
-set shiftwidth=2
+"set expandtab
+"set smarttab
+"set shiftwidth=2
 
 
 "

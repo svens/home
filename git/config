@@ -45,5 +45,8 @@
 [push]
 	default = upstream
 
+[pull]
+	ff = only
+
 [fetch]
 	prune = true

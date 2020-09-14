@@ -134,6 +134,30 @@ test:: .test_clang_debug
 test:: .test_clang_release
 
 
+# Clean {{{1
+
+
+.clean:
+	printf "\033[1;36m$(config)\033[m\n"
+	cmake --build $(config) --target clean
+
+.clean_gcc_debug:
+	$(MAKE) .clean config=gcc-debug
+clean:: .clean_gcc_debug
+
+.clean_gcc_release:
+	$(MAKE) .clean config=gcc-release
+clean:: .clean_gcc_release
+
+.clean_clang_debug:
+	$(MAKE) .clean config=clang-debug
+clean:: .clean_clang_debug
+
+.clean_clang_release:
+	$(MAKE) .clean config=clang-release
+clean:: .clean_clang_release
+
+
 # Coverage {{{1
 
 

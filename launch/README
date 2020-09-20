@@ -1,0 +1,6 @@
+mkdir -p ~/Library/LaunchAgents
+cd ~/Library/LaunchAgents
+ln -sf ~/src/home/launch/*plist .
+launchctl load *.plist
+launchctl start com.sven.brew.update
+launchctl start com.sven.brew.cleanup

@@ -34,7 +34,7 @@ setopt no_auto_menu
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
 
 # specialized completions
-[ -n "$(which kubectl)" ] && source <(kubectl completion zsh)
+[ -x "$(which kubectl)" ] && source <(kubectl completion zsh)
 
 # aliases
 [ -f ~/.aliases ] && source ~/.aliases

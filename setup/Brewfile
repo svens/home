@@ -4,21 +4,16 @@ tap "homebrew/core"
 tap "universal-ctags/universal-ctags"
 
 brew "cmake"
-brew "cscope"
-brew "dos2unix"
 brew "doxygen"
 brew "gcc"
 brew "git"
 brew "lcov"
 brew "ninja"
 brew "tmux"
-brew "tree"
-brew "youtube-dl"
+brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD", "without-docutils", "without-xml"]
 brew "zsh"
 brew "zsh-completions"
-brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD", "without-docutils", "without-xml"]
 
-cask "firefox"
 cask "iterm2"
 cask "mpv"
 cask "transmission"

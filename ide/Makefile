@@ -28,7 +28,7 @@ ide:
 	  && ( tmux detach-client -s "$(project)/ide" || true ) \
 	  || ( \
 	    tmux new-session -s "$(project)/ide" -n main -c $(project_root) -d \; \
-	    new-window -n work -c . \; \
+	    new-window -n work -c ${PWD} \; \
 	    select-window -t "$(project)/ide:main" \; \
 	  )
 	tmux attach-session -t "$(project)/ide"
@@ -39,12 +39,12 @@ work:
 	  && ( tmux detach-client -s "$(project)/work" || true ) \
 	  || ( \
 	    tmux new-session -s "$(project)/work" -n main -c $(project_root) -d \; \
-	    new-window -n work -c . \; \
-	    new-window -n gcc-debug -c gcc-debug \; \
-	    new-window -n gcc-release -c gcc-release \; \
-	    new-window -n clang-debug -c clang-debug \; \
-	    new-window -n clang-release -c clang-release \; \
-	    new-window -n cov -c cov \; \
+	    new-window -n work -c ${PWD} \; \
+	    new-window -n gcc-debug -c ${PWD}/gcc-debug \; \
+	    new-window -n gcc-release -c ${PWD}/gcc-release \; \
+	    new-window -n clang-debug -c ${PWD}/clang-debug \; \
+	    new-window -n clang-release -c ${PWD}/clang-release \; \
+	    new-window -n cov -c ${PWD}/cov \; \
 	    select-window -t "$(project)/work:main" \; \
 	  )
 	tmux attach-session -t "$(project)/work"
@@ -57,14 +57,14 @@ work:
 	printf "\033[1;36m$(config)\033[m (CC=$(CC) CXX=$(CXX) COV=$(COV))\n"
 	mkdir -p $(config) \
 	  && cd $(config) \
-	  && cmake $(project_root) -G Ninja $(CMAKE_OPTS)
+	  && cmake $(project_root) -G Ninja $(CMAKE_OPTS) -D${project}_test=yes -D${project}_samples=yes
 
 .init_gcc_debug:
 	$(MAKE) .init config=gcc-debug CXX=$(GCC_CXX) CC=$(GCC_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Debug"
 init:: .init_gcc_debug
 
 .init_gcc_release:
-	$(MAKE) .init config=gcc-release CXX=$(GCC_CXX) CC=$(GCC_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Release -D$(project)_benchmarks=yes"
+	$(MAKE) .init config=gcc-release CXX=$(GCC_CXX) CC=$(GCC_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Release -D$(project)_bench=yes"
 init:: .init_gcc_release
 
 .init_clang_debug:
@@ -72,11 +72,11 @@ init:: .init_gcc_release
 init:: .init_clang_debug
 
 .init_clang_release:
-	$(MAKE) .init config=clang-release CXX=$(CLANG_CXX) CC=$(CLANG_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Release -D$(project)_benchmarks=yes"
+	$(MAKE) .init config=clang-release CXX=$(CLANG_CXX) CC=$(CLANG_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Release -D$(project)_bench=yes"
 init:: .init_clang_release
 
 .init_cov:
-	$(MAKE) .init config=cov CXX=$(GCC_CXX) CC=$(GCC_CC) COV=$(GCC_COV) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Coverage -D$(project)_docs=yes"
+	$(MAKE) .init config=cov CXX=$(GCC_CXX) CC=$(GCC_CC) COV=$(GCC_COV) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Coverage -D$(project)_doc=yes"
 init:: .init_cov
 
 
@@ -162,7 +162,7 @@ clean:: .clean_clang_release
 
 
 gen-cov:
-	ninja -C cov $(project)-cov
+	ninja -C cov $(project)_test-cov
 	open cov/cov/index.html
 
 

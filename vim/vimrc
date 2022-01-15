@@ -130,7 +130,7 @@ let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
 "
 
 if !filereadable(expand("%:p:h") . "/Makefile")
-  set makeprg=clang++\ -std=c++1z\ -Wall\ -Wextra\ -Werror\ -Weffc++\ -Wfatal-errors\ -pedantic\ -o\ %<\ %
+  set makeprg=clang++\ -std=c++2a\ -Wall\ -Wextra\ -Werror\ -Weffc++\ -Wfatal-errors\ -pedantic\ -o\ %<\ %
 endif
 
 nmap <leader>m :make<CR>:cw<CR>

@@ -1,12 +1,10 @@
-60s http://listen.streamonomy.com/keepfree60s
-70s http://listen.radionomy.com/Bestofthe70s-LudwigRadiocom
 Bossa http://185.33.21.113:11049
+Disco http://185.33.21.113:80/disco_128
 Elmar http://striiming.trio.ee/elmar.mp3
-FlowerPowerRadio http://159.8.16.16:7016/stream
+FlowerPowerRadio http://49.12.129.103:7016/stream
 KeepFree60s http://listen.streamonomy.com/keepfree60s
 Kuku http://striiming.trio.ee:8008/kuku.mp3
 R2 http://r2.err.ee/gfx/raadio2128.m3u mpv -playlist
 RetroFM http://retro.babahhcdn.com/RETRO
 StarFM http://stream.power.ee/StarFM.m3u
 Vikerraadio http://sb.err.ee/live/vikerraadio.m3u8
-abc60 http://144.217.180.30:8173/stream

@@ -64,7 +64,7 @@ work:
 init:: .init_gcc_debug
 
 .init_gcc_release:
-	$(MAKE) .init config=gcc-release CXX=$(GCC_CXX) CC=$(GCC_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Release -D$(project)_bench=yes"
+	$(MAKE) .init config=gcc-release CXX=$(GCC_CXX) CC=$(GCC_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Release"
 init:: .init_gcc_release
 
 .init_clang_debug:
@@ -72,7 +72,7 @@ init:: .init_gcc_release
 init:: .init_clang_debug
 
 .init_clang_release:
-	$(MAKE) .init config=clang-release CXX=$(CLANG_CXX) CC=$(CLANG_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Release -D$(project)_bench=yes"
+	$(MAKE) .init config=clang-release CXX=$(CLANG_CXX) CC=$(CLANG_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Release"
 init:: .init_clang_release
 
 .init_cov:

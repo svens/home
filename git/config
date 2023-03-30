@@ -23,12 +23,13 @@
 
 [alias]
 	it = !git init && git add . && git commit -am \"Initial commit\"
-	amend = commit --amend --no-edit
 	url = remote get-url origin
 	home = !open $(git url)
 	st = status
 	br = branch
 	co = checkout
+	tr = "!f() { git checkout --track -b $(echo $1 | sed 's|^origin/||') $1; }; f"
+	my = !git branch --all | grep svsuurs
 	dw = diff --word-diff
 	graph = log --graph --format=one --all
 	head = rev-parse --abbrev-ref HEAD

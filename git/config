@@ -28,15 +28,14 @@
 	st = status
 	br = branch
 	co = checkout
+	e = "!f() { [ -f $1/list.cmake ] && ${EDITOR:-vim} ${EDITORFLAGS} $1/list.cmake $(grep "^[[:space:]]*$1/" $1/list.cmake); }; f"
 	tr = "!f() { git checkout --track -b $(echo $1 | sed 's|^origin/||') $1; }; f"
-	my = !git branch --all | grep svsuurs
 	dw = diff --word-diff
 	graph = log --graph --format=one --all
 	head = rev-parse --abbrev-ref HEAD
 	tip = log --format=one -1
 	log-compact = log --format=compact
 	new = log ORIG_HEAD.. --stat --no-merges
-	serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
 	root = rev-parse --show-toplevel
 	repo = !basename $(git root)
 	pack = !git archive HEAD --prefix "$(git repo)/"
@@ -55,8 +54,11 @@
 [fetch]
 	prune = true
 
+[includeIf "gitdir:~/src/work/"]
+	path = ~/src/work/.gitconfig
+
 [filter "lfs"]
-	process = git-lfs filter-process
-	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

@@ -1,5 +1,5 @@
-alias l='ls -laF'
-alias ll='ls -lF'
+alias l='ls -hlaF'
+alias ll='ls -hlF'
 alias lt='ll -t'
 
 alias -- +='pushd'
@@ -7,7 +7,8 @@ alias -- -='popd'
 alias -- ..='cd ..'
 alias -- ...='cd ../..'
 
-alias myip='dig +short @resolver1.opendns.com myip.opendns.com'
+alias myip='dig +short txt ch whoami.cloudflare @1.1.1.1'
+alias myip6='dig +short txt ch whoami.cloudflare @2606:4700:4700::1111'
 
 alias sudo='sudo -p "[%p -> %U] Password: "'
 
@@ -15,6 +16,15 @@ alias grep='grep --color=auto'
 
 alias webserver='python3 -m http.server'
 alias http_time='curl -w "    namelookup %{time_namelookup}\n       connect %{time_connect}\n    appconnect %{time_appconnect}\n   pretransfer %{time_pretransfer}\n      redirect %{time_redirect}\n starttransfer %{time_starttransfer}\n         total %{time_total}\n" -o /dev/null -s'
+
+pp ()
+{
+  if test -n "$1" -a -f $1; then
+    ${CXX:-c++-14} -std=c++23 -Wall -Wextra -Weffc++ -Werror -Wfatal-errors -pedantic -o $(basename -s .cpp $1) $1 && ./$(basename -s .cpp $1)
+  else
+    echo none
+  fi
+}
 
 e ()
 {

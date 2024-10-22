@@ -1,5 +1,5 @@
 # path
-for dir in ~/bin /work/bin; do
+for dir in ~/bin; do
     [ -d "$dir" ] && path=($dir $path)
 done
 

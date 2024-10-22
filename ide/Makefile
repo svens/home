@@ -50,6 +50,10 @@ work:
 	tmux attach-session -t "$(project)/work"
 
 
+tags:
+	cd $(project_root) && ctags -R --guess-language-eagerly
+
+
 # Init {{{1
 
 
@@ -58,6 +62,8 @@ work:
 	mkdir -p $(config) \
 	  && cd $(config) \
 	  && cmake $(project_root) -G Ninja $(CMAKE_OPTS) -D${project}_test=yes -D${project}_samples=yes
+
+# add if needed -DCMAKE_OSX_SYSROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX13.sdk
 
 .init_gcc_debug:
 	$(MAKE) .init config=gcc-debug CXX=$(GCC_CXX) CC=$(GCC_CC) CMAKE_OPTS="-DCMAKE_BUILD_TYPE=Debug"

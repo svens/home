@@ -3,23 +3,28 @@ set background=dark
 
 let colors_name = "modest"
 
-hi Normal       ctermfg=lightgrey           guifg=grey90 guibg=black
-hi Comment      ctermfg=brown               guifg=darkyellow
-hi Constant     ctermfg=lightgrey           guifg=grey90
-hi String       ctermfg=darkmagenta         guifg=darkmagenta
-hi Folded       ctermfg=cyan                guifg=cyan guibg=black
-hi Identifier   ctermfg=white cterm=bold    guifg=grey95
+hi Normal       ctermfg=lightgrey
+hi Comment      ctermfg=brown
+hi Constant     ctermfg=lightgrey
+hi String       ctermfg=darkmagenta
+hi Folded       ctermfg=cyan
+hi Identifier   ctermfg=white cterm=bold
 hi Ignore       ctermfg=black
 hi NonText      ctermfg=lightgrey
-hi PreProc      ctermfg=green cterm=bold    guifg=green
-hi Special      ctermfg=magenta cterm=bold  guifg=magenta
-hi SpecialKey   ctermfg=darkgray            guifg=gray
-hi Statement    ctermfg=white cterm=bold    guifg=grey95
-hi Todo         ctermfg=black ctermbg=brown guifg=black guibg=darkyellow
-hi Type         ctermfg=white cterm=bold    guifg=grey95
-hi RightMargin  ctermfg=red                 guifg=red
+hi PreProc      ctermfg=green cterm=bold
+hi Special      ctermfg=magenta cterm=bold
+hi SpecialKey   ctermfg=darkgray
+hi Statement    ctermfg=white cterm=bold
+hi Todo         ctermfg=black ctermbg=brown
+hi Type         ctermfg=white cterm=bold
+hi RightMargin  ctermfg=red
 hi Visual       ctermfg=black ctermbg=gray
-hi Search       ctermfg=black ctermbg=darkcyan  guifg=black guibg=darkcyan
+hi Search       ctermfg=black ctermbg=darkcyan
+
+hi DiffAdd      ctermfg=black ctermbg=darkgreen
+hi DiffChange   ctermfg=none ctermbg=none
+hi DiffDelete   ctermfg=none ctermbg=darkred
+hi DiffText     ctermfg=yellow ctermbg=darkred
 
 hi Pmenu ctermbg=brown
 hi PmenuSel ctermbg=yellow

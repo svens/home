@@ -1,0 +1,4 @@
+0) Run ./macos.sh
+1) Copy *.plist to ~/Library/Preferences
+2) run 'brew bundle'
+3) run 'brew bundle install'

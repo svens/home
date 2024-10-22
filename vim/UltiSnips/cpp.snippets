@@ -11,9 +11,7 @@ endsnippet
 snippet na "namespace anonoymous"
 namespace {
 
-
 $0
-
 
 } // namespace
 endsnippet
@@ -22,22 +20,9 @@ endsnippet
 snippet ns "namespace"
 namespace ${1:`!v expand('%:h:r')`} {
 
-
 $0
-
 
 } // namespace $1
-endsnippet
-
-
-snippet nss "namespace { namespace {"
-namespace ${1:`!v expand('%:h:h')`}::${2:`!v expand('%:h:t')`} {
-
-
-$0
-
-
-} // namespace $1::$2
 endsnippet
 
 
@@ -49,10 +34,8 @@ public:
 	$1 ()
 	{ }
 
-
 	~$1 () noexcept
 	{ }
-
 
 private:
 
@@ -70,26 +53,21 @@ public:
 		: $1($0)
 	{ }
 
-
 	~$1 () noexcept
 	{ }
-
 
 	$1 (const $1 &that)
 		: $1(that.XXX)
 	{ }
 
-
 	$1 ($1 &&that) noexcept
 		: $1(std::exchange(that.XXX, {}))
 	{ }
-
 
 	$1 &operator= (const $1 &that)
 	{
 		return *this = $1(that);
 	}
-
 
 	$1 &operator= ($1 &&that) noexcept
 	{
@@ -97,7 +75,6 @@ public:
 		swap(XXX, that.XXX);
 		return *this;
 	}
-
 
 private:
 

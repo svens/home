@@ -15,8 +15,8 @@ brew "zsh"
 brew "zsh-completions"
 
 cask "iterm2"
-cask "mpv"
-cask "transmission"
+#cask "mpv"
+#cask "transmission"
 
 #tap "svens/home", "https://github.com/svens/home"
 #brew "svens/home/vim"

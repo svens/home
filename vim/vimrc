@@ -101,7 +101,6 @@ set nowrap
 let loaded_matchparen = 1
 let c_no_curly_error = 1
 
-
 "
 " mappings
 "
@@ -117,6 +116,9 @@ let mapleader = ";"
 " header/source switch
 let extmap = { 'c': 'h', 'h': 'c', 'cpp': 'hpp', 'hpp': 'cpp', }
 nmap <leader>s :exe "edit " . expand('%<') . '.' . extmap[expand('%:e')]<CR>
+
+" wipe all deleted/unload buffers
+command! -bar -bang Bwipeout call misc#bwipeout(<bang>0)
 
 
 "

@@ -10,6 +10,8 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'OrangeT/vim-csharp'
 Plugin 'SirVer/ultisnips'
 Plugin 'PProvost/vim-ps1'
+Plugin 'carlsmedstad/vim-bicep'
+Plugin 'github/copilot.vim'
 call vundle#end()
 filetype plugin indent on
 

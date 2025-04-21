@@ -3,6 +3,17 @@ extends c
 priority -49
 
 
+snippet gpp "header guard"
+#pragma once // -*- C++ -*-
+
+/**
+ * \file `!v expand('%')`
+ */
+
+$0
+endsnippet
+
+
 snippet < "include <>"
 #include <${1:iostream}>$0
 endsnippet
@@ -18,7 +29,7 @@ endsnippet
 
 
 snippet ns "namespace"
-namespace ${1:`!v expand('%:h:r')`} {
+namespace ${1:`!v substitute(expand('%:h:r'), '\/', '::', 'g')`} {
 
 $0
 

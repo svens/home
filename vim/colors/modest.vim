@@ -6,7 +6,7 @@ let colors_name = "modest"
 hi Normal       ctermfg=lightgrey
 hi Comment      ctermfg=brown
 hi Constant     ctermfg=lightgrey
-hi String       ctermfg=darkmagenta
+hi String       ctermfg=magenta
 hi Folded       ctermfg=cyan
 hi Identifier   ctermfg=white cterm=bold
 hi Ignore       ctermfg=black

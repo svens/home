@@ -13,6 +13,9 @@
 [color]
 	ui = auto
 
+[color "grep"]
+	filename = cyan
+
 [pretty]
 	one = format:%C(yellow)%h%C(cyan)%d %Creset %s %C(red)%cn %C(magenta)%cr%Creset
 	compact = format:%C(yellow)%h%Creset %s %C(magenta)%ar%Creset

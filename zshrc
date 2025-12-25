@@ -33,8 +33,5 @@ autoload -U compinit && compinit
 setopt no_auto_menu
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}'
 
-# specialized completions
-[ -x "$(which kubectl)" ] && source <(kubectl completion zsh)
-
 # aliases
 [ -f ~/.aliases ] && source ~/.aliases

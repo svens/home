@@ -7,8 +7,8 @@ alias -- -='popd'
 alias -- ..='cd ..'
 alias -- ...='cd ../..'
 
-alias myip='dig +short txt ch whoami.cloudflare @1.1.1.1'
-alias myip6='dig +short txt ch whoami.cloudflare @2606:4700:4700::1111'
+alias myip='curl --silent --ipv4 ifconfig.me'
+alias myip6='curl --silent --ipv6 ifconfig.me'
 
 alias sudo='sudo -p "[%p -> %U] Password: "'
 
@@ -62,4 +62,22 @@ session_timer ()
     done
     printf '\n===== %d =====\n\n' $c
   done
+}
+
+ssh ()
+{
+  if test -f ./ssh_config; then
+    command ssh -F ./ssh_config "$@"
+  else
+    command ssh "$@"
+  fi
+}
+
+scp ()
+{
+  if test -f ./ssh_config; then
+    command scp -F ./ssh_config "$@"
+  else
+    command scp "$@"
+  fi
 }

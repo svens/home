@@ -32,7 +32,7 @@
 	br = branch
 	co = checkout
 	e = "!f() { [ -f $1/list.cmake ] && ${EDITOR:-vim} ${EDITORFLAGS} $1/list.cmake $(grep "^[[:space:]]*$1/" $1/list.cmake); }; f"
-	tr = "!f() { git checkout --track -b $(echo $1 | sed 's|^origin/||') $1; }; f"
+	tr = "!f() { git checkout --track -b $1 origin/$1; }; f"
 	dw = diff --word-diff
 	graph = log --graph --format=one --all
 	head = rev-parse --abbrev-ref HEAD
